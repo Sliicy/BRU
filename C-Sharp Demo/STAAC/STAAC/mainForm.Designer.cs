@@ -28,6 +28,7 @@ namespace STAAC {
             this.btnHelp = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.coolDown = new System.Windows.Forms.Timer(this.components);
+            this.btnOnScreenKeyboard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnHelp
@@ -57,11 +58,24 @@ namespace STAAC {
             this.coolDown.Interval = 5000;
             this.coolDown.Tick += new System.EventHandler(this.CoolDown_Tick);
             // 
+            // btnOnScreenKeyboard
+            // 
+            this.btnOnScreenKeyboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOnScreenKeyboard.Location = new System.Drawing.Point(796, 15);
+            this.btnOnScreenKeyboard.Name = "btnOnScreenKeyboard";
+            this.btnOnScreenKeyboard.Size = new System.Drawing.Size(176, 116);
+            this.btnOnScreenKeyboard.TabIndex = 1;
+            this.btnOnScreenKeyboard.Text = "⌨️";
+            this.btnOnScreenKeyboard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOnScreenKeyboard.UseVisualStyleBackColor = true;
+            this.btnOnScreenKeyboard.Click += new System.EventHandler(this.BtnOnScreenKeyboard_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.btnOnScreenKeyboard);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnHelp);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -79,6 +93,7 @@ namespace STAAC {
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer coolDown;
+        private System.Windows.Forms.Button btnOnScreenKeyboard;
     }
 }
 

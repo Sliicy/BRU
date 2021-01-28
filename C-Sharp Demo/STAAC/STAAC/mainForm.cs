@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Speech;
 using System.Speech.Synthesis;
+using System.IO;
+using System.Diagnostics;
 
 namespace STAAC {
     public partial class MainForm : Form {
@@ -43,6 +45,16 @@ namespace STAAC {
         private void CoolDown_Tick(object sender, EventArgs e) {
             // Pop first word from emphasizable list:
             if (emphasizable.Count > 0) emphasizable.RemoveAt(0);
+        }
+
+        private void BtnOnScreenKeyboard_Click(object sender, EventArgs e) {
+            // Kills any on-screen keyboards, and then launches a new one:
+            var tabProcesses = Process.GetProcessesByName("TabTip");
+            foreach (Process p in tabProcesses) {
+                p.Kill();
+            }
+            string keyboardPath = Path.Combine(@"C:\Program Files\Common Files\Microsoft Shared\ink", "TabTip.exe");
+            Process.Start(keyboardPath);
         }
     }
 }
