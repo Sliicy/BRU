@@ -17,6 +17,8 @@ namespace STAAC {
 
         // List of words that the user is angry about (deliberately repeatedly pressing):
         List<string> emphasizable = new List<string>();
+        List<string> requiredSettingOptions = new List<string>() { "Author", "Category", "Last Accessed", "Matrix Size", "Matrix Data" };
+
         readonly string templateFolderName = "Templates";
         readonly string settingsFileName = "info.txt";
 
@@ -34,7 +36,12 @@ namespace STAAC {
             if (Directory.Exists(Path.Combine(Application.StartupPath, templateFolderName, menuForm.selectedTemplate))) {
                 if (File.Exists(Path.Combine(Application.StartupPath, templateFolderName, menuForm.selectedTemplate, settingsFileName))) {
 
+                    
+
                     // Read the Matrix Size
+                    int matrixWidth = 1;
+                    int matrixHeight = 1;
+
 
                     // Read all the button names and create buttons for each one
 
