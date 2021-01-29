@@ -1,6 +1,6 @@
 ﻿
 namespace STAAC {
-    partial class MainForm {
+    partial class templateForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -26,32 +26,21 @@ namespace STAAC {
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.coolDown = new System.Windows.Forms.Timer(this.components);
             this.btnOnScreenKeyboard = new System.Windows.Forms.Button();
+            this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(15, 15);
+            this.btnHelp.Location = new System.Drawing.Point(793, 140);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(150, 44);
+            this.btnHelp.Size = new System.Drawing.Size(176, 44);
             this.btnHelp.TabIndex = 0;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(177, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 44);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Come here";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
             // coolDown
             // 
@@ -61,7 +50,7 @@ namespace STAAC {
             // btnOnScreenKeyboard
             // 
             this.btnOnScreenKeyboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOnScreenKeyboard.Location = new System.Drawing.Point(796, 15);
+            this.btnOnScreenKeyboard.Location = new System.Drawing.Point(793, 15);
             this.btnOnScreenKeyboard.Name = "btnOnScreenKeyboard";
             this.btnOnScreenKeyboard.Size = new System.Drawing.Size(176, 116);
             this.btnOnScreenKeyboard.TabIndex = 1;
@@ -70,17 +59,28 @@ namespace STAAC {
             this.btnOnScreenKeyboard.UseVisualStyleBackColor = true;
             this.btnOnScreenKeyboard.Click += new System.EventHandler(this.BtnOnScreenKeyboard_Click);
             // 
-            // MainForm
+            // tlpButtons
+            // 
+            this.tlpButtons.ColumnCount = 1;
+            this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpButtons.Location = new System.Drawing.Point(12, 15);
+            this.tlpButtons.Name = "tlpButtons";
+            this.tlpButtons.RowCount = 1;
+            this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpButtons.Size = new System.Drawing.Size(772, 593);
+            this.tlpButtons.TabIndex = 2;
+            // 
+            // templateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.tlpButtons);
             this.Controls.Add(this.btnOnScreenKeyboard);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnHelp);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "MainForm";
+            this.Name = "templateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "STAAC";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -91,9 +91,9 @@ namespace STAAC {
         #endregion
 
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer coolDown;
         private System.Windows.Forms.Button btnOnScreenKeyboard;
+        private System.Windows.Forms.TableLayoutPanel tlpButtons;
     }
 }
 

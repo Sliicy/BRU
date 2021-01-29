@@ -13,19 +13,43 @@ using System.IO;
 using System.Diagnostics;
 
 namespace STAAC {
-    public partial class MainForm : Form {
+    public partial class templateForm : Form {
 
         // List of words that the user is angry about (deliberately repeatedly pressing):
         List<string> emphasizable = new List<string>();
+        readonly string templateFolderName = "Templates";
+        readonly string settingsFileName = "info.txt";
 
-        public MainForm() {
+        public templateForm() {
             InitializeComponent();
         }
 
         SpeechSynthesizer narrator;
 
         private void MainForm_Load(object sender, EventArgs e) {
+            // Insert template name into window title:
+            Text = "STAAC - " + menuForm.selectedTemplate;
 
+            // Try to load appropriate template:
+            if (Directory.Exists(Path.Combine(Application.StartupPath, templateFolderName, menuForm.selectedTemplate))) {
+                if (File.Exists(Path.Combine(Application.StartupPath, templateFolderName, menuForm.selectedTemplate, settingsFileName))) {
+
+                    // Read the Matrix Size
+
+                    // Read all the button names and create buttons for each one
+
+                    // Look for any pictures to add
+
+                    // Assign all buttons' click event to the Help Button click event
+
+                } else {
+                    // Settings file wasn't found. Abort:
+                    MessageBox.Show("Couldn't find " + settingsFileName + " inside of " + Path.Combine(Application.StartupPath, templateFolderName, menuForm.selectedTemplate) + "!",
+                        "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    Close();
+                }
+            }
         }
         
         private void BtnHelp_Click(object sender, EventArgs e) {
@@ -38,8 +62,6 @@ namespace STAAC {
                 emphasizable.Add(buttonPressed.Text);
                 coolDown.Start();
             }
-            
-            
         }
 
         private void CoolDown_Tick(object sender, EventArgs e) {

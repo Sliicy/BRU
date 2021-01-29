@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>STAAC.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,16 +50,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mainForm.cs">
+    <Compile Include="templateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mainForm.Designer.cs">
-      <DependentUpon>mainForm.cs</DependentUpon>
+    <Compile Include="templateForm.Designer.cs">
+      <DependentUpon>templateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuForm.Designer.cs">
+      <DependentUpon>menuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="mainForm.resx">
-      <DependentUpon>mainForm.cs</DependentUpon>
+    <EmbeddedResource Include="templateForm.resx">
+      <DependentUpon>templateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuForm.resx">
+      <DependentUpon>menuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
