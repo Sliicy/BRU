@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="deleteTemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deleteTemplateForm.Designer.cs">
+      <DependentUpon>deleteTemplateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newNameForm.Designer.cs">
+      <DependentUpon>newNameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="templateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +76,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="deleteTemplateForm.resx">
+      <DependentUpon>deleteTemplateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newNameForm.resx">
+      <DependentUpon>newNameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="templateForm.resx">
       <DependentUpon>templateForm.cs</DependentUpon>
     </EmbeddedResource>

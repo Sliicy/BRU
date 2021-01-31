@@ -17,7 +17,11 @@ namespace STAAC {
 
         public static string selectedTemplate = "";
 
-        private void MenuForm_Load(object sender, EventArgs e) {
+        void RefreshTemplateList() {
+            // Remove pre-existing buttons:
+            foreach (Control c in pnlButtons.Controls) {
+                pnlButtons.Controls.Remove(c);
+            }
 
             // Check if any template folders exist:
             string templatePath = Path.Combine(Application.StartupPath, "Templates");
@@ -42,6 +46,10 @@ namespace STAAC {
             } else {
                 Directory.CreateDirectory(templatePath);
             }
+        }
+
+        private void MenuForm_Load(object sender, EventArgs e) {
+            RefreshTemplateList();
 
         }
 
@@ -72,7 +80,9 @@ namespace STAAC {
         }
 
         private void BtnDelete_Click(object sender, EventArgs e) {
-
+            deleteTemplateForm d = new deleteTemplateForm();
+            d.ShowDialog();
+            RefreshTemplateList();
         }
     }
 }
