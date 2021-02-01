@@ -113,12 +113,20 @@ namespace STAAC {
             }
         }
 
-        // Function to remember button changes (name, image, or location changes):
+        // Function to remember changes made to buttons:
         void RecalculateMatrix() {
             matrixData = "Matrix Data=";
 
+            // Sort controls by location (top, then left):
+            var allButtons = new List<Control>();
             foreach (Control c in pnlButtons.Controls) {
-                matrixData += c.Text + ",";
+                allButtons.Add(c);
+            }
+            var leftToRightButtonList = allButtons.OrderBy(o => o.Top).ThenBy(o => o.Left).ToList();
+            
+            // Sequentially add each button's text into the matrixData:
+            foreach (var button in leftToRightButtonList) {
+                matrixData += button.Text + ",";
             }
             matrixData = matrixData.Remove(matrixData.Length - 1, 1);
         }
