@@ -39,11 +39,11 @@ namespace STAAC {
             // btnHelp
             // 
             this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHelp.Location = new System.Drawing.Point(648, 0);
+            this.btnHelp.Location = new System.Drawing.Point(447, 0);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(150, 44);
-            this.btnHelp.TabIndex = 4;
+            this.btnHelp.TabIndex = 5;
             this.btnHelp.Text = "&Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
@@ -56,10 +56,10 @@ namespace STAAC {
             // btnOnScreenKeyboard
             // 
             this.btnOnScreenKeyboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOnScreenKeyboard.Location = new System.Drawing.Point(156, 0);
+            this.btnOnScreenKeyboard.Location = new System.Drawing.Point(149, 0);
             this.btnOnScreenKeyboard.Name = "btnOnScreenKeyboard";
             this.btnOnScreenKeyboard.Size = new System.Drawing.Size(150, 44);
-            this.btnOnScreenKeyboard.TabIndex = 2;
+            this.btnOnScreenKeyboard.TabIndex = 3;
             this.btnOnScreenKeyboard.Text = "&Keyboard";
             this.btnOnScreenKeyboard.UseVisualStyleBackColor = true;
             this.btnOnScreenKeyboard.Click += new System.EventHandler(this.BtnOnScreenKeyboard_Click);
@@ -82,18 +82,18 @@ namespace STAAC {
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(150, 44);
-            this.btnBack.TabIndex = 5;
+            this.btnBack.TabIndex = 2;
             this.btnBack.Text = "&Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(315, 0);
+            this.btnEdit.Location = new System.Drawing.Point(298, 0);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(6);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(150, 44);
-            this.btnEdit.TabIndex = 3;
+            this.btnEdit.TabIndex = 4;
             this.btnEdit.Text = "&Edit Buttons";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);

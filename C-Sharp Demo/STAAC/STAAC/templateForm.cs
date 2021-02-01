@@ -30,7 +30,7 @@ namespace STAAC {
 
         string author = "";
         string category = "";
-        string colorScheme = "none";
+        string colorScheme = "None";
 
         int buttonWidth = 0;
         int buttonHeight = 0;
@@ -47,8 +47,9 @@ namespace STAAC {
 
         SpeechSynthesizer narrator;
 
-        /* Load a bitmap without locking it:
-         Source: http://csharphelper.com/blog/2014/07/load-images-without-locking-their-files-in-c/
+        /*
+         * Load a bitmap without locking it:
+         * Source: http://csharphelper.com/blog/2014/07/load-images-without-locking-their-files-in-c/
         */
         private static Bitmap LoadBitmapUnlocked(string fileName) {
             using (Bitmap bm = new Bitmap(fileName)) {
@@ -56,7 +57,7 @@ namespace STAAC {
             }
         }
 
-        // Function that refreshes all buttons onto the grid, based on the matrix data line found in the info file:
+        // Function that refreshes all buttons on the grid, based on the matrix data line found in the info file:
         void ReloadButtons(string line) {
             pnlButtons.Controls.Clear();
             buttonWidth = pnlButtons.Width / matrixWidth;
@@ -71,6 +72,19 @@ namespace STAAC {
                     Size = new Size(buttonWidth, buttonHeight),
                     Location = new Point(buttonWidth * countX, buttonHeight * countY)
                 };
+
+                if (colorScheme.Length > 0) {
+                    switch (colorScheme.ToLower()) {
+                        case "none":
+                            break;
+                        case "rainbow":
+
+                            break;
+                        default:
+                            newButton.BackColor = Color.FromName(colorScheme);
+                            break;
+                    }
+                }
 
                 // Assign all buttons' click events, and drag events:
                 newButton.Click += new EventHandler(ButtonClick);
@@ -252,7 +266,6 @@ namespace STAAC {
                     c.Location = oldButtonLocation;
                 }
             }
-
         }
 
         private void CoolDown_Tick(object sender, EventArgs e) {

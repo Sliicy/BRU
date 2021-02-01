@@ -73,6 +73,12 @@
     <Compile Include="newNameForm.Designer.cs">
       <DependentUpon>newNameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="newTemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newTemplateForm.Designer.cs">
+      <DependentUpon>newTemplateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="templateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="newNameForm.resx">
       <DependentUpon>newNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newTemplateForm.resx">
+      <DependentUpon>newTemplateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="templateForm.resx">
       <DependentUpon>templateForm.cs</DependentUpon>

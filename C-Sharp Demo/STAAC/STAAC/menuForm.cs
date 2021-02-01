@@ -30,13 +30,15 @@ namespace STAAC {
             string templatePath = Path.Combine(Application.StartupPath, templateFolderName);
             if (Directory.Exists(templatePath)) {
                 int buttonCount = 0;
-                string[] folders = Directory.GetDirectories(templatePath);
+
+                DirectoryInfo d = new DirectoryInfo(templatePath);
+                DirectoryInfo[] folders = d.GetDirectories().OrderByDescending(t => t.LastWriteTime).ToArray();
 
                 foreach (var folder in folders) {
 
                     // Create a button for the folder:
                     Button template = new Button {
-                        Text = Path.GetFileName(folder),
+                        Text = Path.GetFileName(folder.Name),
                         Height = btnNew.Height,
                         Width = pnlButtons.Width,
                         Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
@@ -71,7 +73,9 @@ namespace STAAC {
         }
 
         private void BtnNew_Click(object sender, EventArgs e) {
-
+            var newTemplate = new newTemplateForm();
+            newTemplate.ShowDialog();
+            RefreshTemplateList();
         }
 
         private void BtnImport_Click(object sender, EventArgs e) {
