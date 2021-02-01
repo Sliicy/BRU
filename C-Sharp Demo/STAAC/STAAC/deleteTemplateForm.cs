@@ -16,7 +16,7 @@ namespace STAAC {
         }
         void RefreshFolderList() {
             lstTemplates.Items.Clear();
-            string templatePath = Path.Combine(Application.StartupPath, "Templates");
+            string templatePath = Path.Combine(Application.StartupPath, MenuForm.templateFolderName);
             if (Directory.Exists(templatePath)) {
                 string[] folders = Directory.GetDirectories(templatePath);
                 foreach (var folder in folders) {
@@ -35,7 +35,7 @@ namespace STAAC {
                 DialogResult d = MessageBox.Show("Are you sure you want to delete " + targetTemplate + "?", "Delete Template", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (d == DialogResult.Yes) {
                     try {
-                        Directory.Delete(Path.Combine(Application.StartupPath, "Templates", targetTemplate), true);
+                        Directory.Delete(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, targetTemplate), true);
                     } catch (Exception) {
                         MessageBox.Show("Unable to delete " + targetTemplate + "!", "Couldn't Delete Template", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }

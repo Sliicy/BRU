@@ -35,9 +35,14 @@
   <PropertyGroup>
     <StartupObject>STAAC.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Billboard.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,6 +60,12 @@
     </Compile>
     <Compile Include="deleteTemplateForm.Designer.cs">
       <DependentUpon>deleteTemplateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="exportTemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="exportTemplateForm.Designer.cs">
+      <DependentUpon>exportTemplateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="newNameForm.cs">
       <SubType>Form</SubType>
@@ -78,6 +89,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="deleteTemplateForm.resx">
       <DependentUpon>deleteTemplateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="exportTemplateForm.resx">
+      <DependentUpon>exportTemplateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="newNameForm.resx">
       <DependentUpon>newNameForm.cs</DependentUpon>
@@ -109,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Billboard.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

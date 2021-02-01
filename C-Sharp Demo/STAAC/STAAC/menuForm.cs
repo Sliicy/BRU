@@ -8,14 +8,17 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Compression;
 
 namespace STAAC {
-    public partial class menuForm : Form {
-        public menuForm() {
+    public partial class MenuForm : Form {
+        public MenuForm() {
             InitializeComponent();
         }
 
         public static string selectedTemplate = "";
+        public readonly static string templateFolderName = "Templates";
+        public readonly static string settingsFileName = "info.txt";
 
         void RefreshTemplateList() {
             // Remove pre-existing buttons:
@@ -24,7 +27,7 @@ namespace STAAC {
             }
 
             // Check if any template folders exist:
-            string templatePath = Path.Combine(Application.StartupPath, "Templates");
+            string templatePath = Path.Combine(Application.StartupPath, templateFolderName);
             if (Directory.Exists(templatePath)) {
                 int buttonCount = 0;
                 string[] folders = Directory.GetDirectories(templatePath);
@@ -72,11 +75,26 @@ namespace STAAC {
         }
 
         private void BtnImport_Click(object sender, EventArgs e) {
-
+            var zipSelect = new OpenFileDialog() { 
+            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+            Filter = "Compressed Zip Folder (*.zip) | *.zip",
+            Multiselect = false,
+            Title = "Please choose a zip file template to import."};
+            var selection = zipSelect.ShowDialog();
+            if (selection == DialogResult.OK) {
+                if (Directory.Exists(Path.Combine(Application.StartupPath, templateFolderName, Path.GetFileNameWithoutExtension(zipSelect.FileName)))) {
+                    MessageBox.Show("A template with the name \"" + Path.GetFileNameWithoutExtension(zipSelect.FileName) + "\" already exists! Please choose a different name.", "Template Name Conflict", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } else {
+                    ZipFile.ExtractToDirectory(zipSelect.FileName, Path.Combine(Application.StartupPath, templateFolderName, Path.GetFileNameWithoutExtension(zipSelect.FileName)));
+                    MessageBox.Show("Imported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshTemplateList();
+                }
+            }
         }
 
         private void BtnExport_Click(object sender, EventArgs e) {
-
+            var export = new ExportTemplateForm();
+            export.ShowDialog();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e) {
