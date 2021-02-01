@@ -63,7 +63,7 @@ namespace STAAC {
             selectedTemplate = button.Text;
 
             // Show the template:
-            templateForm form = new templateForm();
+            TemplateForm form = new TemplateForm();
             form.ShowDialog();
         }
 

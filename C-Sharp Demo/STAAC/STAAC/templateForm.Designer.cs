@@ -1,6 +1,6 @@
 ﻿
 namespace STAAC {
-    partial class templateForm {
+    partial class TemplateForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -28,20 +28,20 @@ namespace STAAC {
             this.btnHelp = new System.Windows.Forms.Button();
             this.coolDown = new System.Windows.Forms.Timer(this.components);
             this.btnOnScreenKeyboard = new System.Windows.Forms.Button();
-            this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlBottom = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.pnlButtons = new System.Windows.Forms.Panel();
+            this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(159, 0);
+            this.btnHelp.Location = new System.Drawing.Point(648, 0);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(150, 44);
-            this.btnHelp.TabIndex = 0;
-            this.btnHelp.Text = "Help";
+            this.btnHelp.TabIndex = 3;
+            this.btnHelp.Text = "&Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
@@ -56,42 +56,21 @@ namespace STAAC {
             this.btnOnScreenKeyboard.Location = new System.Drawing.Point(0, 0);
             this.btnOnScreenKeyboard.Name = "btnOnScreenKeyboard";
             this.btnOnScreenKeyboard.Size = new System.Drawing.Size(150, 44);
-            this.btnOnScreenKeyboard.TabIndex = 1;
-            this.btnOnScreenKeyboard.Text = "Keyboard";
+            this.btnOnScreenKeyboard.TabIndex = 2;
+            this.btnOnScreenKeyboard.Text = "&Keyboard";
             this.btnOnScreenKeyboard.UseVisualStyleBackColor = true;
             this.btnOnScreenKeyboard.Click += new System.EventHandler(this.BtnOnScreenKeyboard_Click);
             // 
-            // tlpButtons
+            // pnlBottom
             // 
-            this.tlpButtons.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpButtons.ColumnCount = 5;
-            this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButtons.Location = new System.Drawing.Point(0, 0);
-            this.tlpButtons.Name = "tlpButtons";
-            this.tlpButtons.RowCount = 5;
-            this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpButtons.Size = new System.Drawing.Size(798, 626);
-            this.tlpButtons.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnEdit);
-            this.panel1.Controls.Add(this.btnOnScreenKeyboard);
-            this.panel1.Controls.Add(this.btnHelp);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 626);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(798, 44);
-            this.panel1.TabIndex = 3;
+            this.pnlBottom.Controls.Add(this.btnEdit);
+            this.pnlBottom.Controls.Add(this.btnOnScreenKeyboard);
+            this.pnlBottom.Controls.Add(this.btnHelp);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 626);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(798, 44);
+            this.pnlBottom.TabIndex = 1;
             // 
             // btnEdit
             // 
@@ -99,25 +78,34 @@ namespace STAAC {
             this.btnEdit.Margin = new System.Windows.Forms.Padding(6);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(150, 44);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "&Edit Buttons";
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
-            // templateForm
+            // pnlButtons
+            // 
+            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlButtons.Location = new System.Drawing.Point(0, 0);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(798, 626);
+            this.pnlButtons.TabIndex = 0;
+            this.pnlButtons.Resize += new System.EventHandler(this.PnlButtons_Resize);
+            // 
+            // TemplateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 670);
-            this.Controls.Add(this.tlpButtons);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlButtons);
+            this.Controls.Add(this.pnlBottom);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "templateForm";
+            this.Name = "TemplateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "STAAC";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.panel1.ResumeLayout(false);
+            this.pnlBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -127,9 +115,9 @@ namespace STAAC {
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Timer coolDown;
         private System.Windows.Forms.Button btnOnScreenKeyboard;
-        private System.Windows.Forms.TableLayoutPanel tlpButtons;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlBottom;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Panel pnlButtons;
     }
 }
 

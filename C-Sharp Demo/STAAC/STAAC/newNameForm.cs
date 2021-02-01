@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace STAAC {
-    public partial class newNameForm : Form {
-        public newNameForm() {
+    public partial class NewNameForm : Form {
+        public NewNameForm() {
             InitializeComponent();
         }
 
@@ -18,40 +18,44 @@ namespace STAAC {
         public string newName = "";
         public bool saveChanges = false;
 
-        public newNameForm(string oldName) {
+        public NewNameForm(string oldName) {
             InitializeComponent();
             originalName = oldName;
         }
 
-            private void newNameForm_KeyDown(object sender, KeyEventArgs e) {
+            private void NewNameForm_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Escape) {
                 Close();
             }
         }
 
-        private void newNameForm_Load(object sender, EventArgs e) {
+        private void NewNameForm_Load(object sender, EventArgs e) {
             txtName.Text = originalName;
             txtName.SelectAll();
         }
 
-        private void txtName_KeyDown(object sender, KeyEventArgs e) {
+        private void TxtName_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
                 btnOK.PerformClick();
             }
         }
 
-        private void btnOK_Click(object sender, EventArgs e) {
+        private void BtnOK_Click(object sender, EventArgs e) {
             newName = txtName.Text;
             saveChanges = true;
             Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e) {
+        private void BtnCancel_Click(object sender, EventArgs e) {
             Close();
         }
 
-        private void newNameForm_FormClosing(object sender, FormClosingEventArgs e) {
+        private void NewNameForm_FormClosing(object sender, FormClosingEventArgs e) {
             newName = txtName.Text;
+        }
+
+        private void TxtName_TextChanged(object sender, EventArgs e) {
+            btnOK.Enabled = txtName.TextLength > 0;
         }
     }
 }
