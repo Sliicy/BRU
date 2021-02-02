@@ -127,7 +127,7 @@ namespace STAAC {
             this.Name = "NewNameForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Enter Button Name";
             this.Load += new System.EventHandler(this.NewNameForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewNameForm_KeyDown);

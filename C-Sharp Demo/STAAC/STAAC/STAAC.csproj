@@ -55,61 +55,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="deleteTemplateForm.cs">
+    <Compile Include="DeleteTemplateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="deleteTemplateForm.Designer.cs">
-      <DependentUpon>deleteTemplateForm.cs</DependentUpon>
+    <Compile Include="DeleteTemplateForm.Designer.cs">
+      <DependentUpon>DeleteTemplateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="exportTemplateForm.cs">
+    <Compile Include="ExportTemplateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exportTemplateForm.Designer.cs">
-      <DependentUpon>exportTemplateForm.cs</DependentUpon>
+    <Compile Include="ExportTemplateForm.Designer.cs">
+      <DependentUpon>ExportTemplateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="newNameForm.cs">
+    <Compile Include="NewNameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="newNameForm.Designer.cs">
-      <DependentUpon>newNameForm.cs</DependentUpon>
+    <Compile Include="NewNameForm.Designer.cs">
+      <DependentUpon>NewNameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="newTemplateForm.cs">
+    <Compile Include="NewTemplateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="newTemplateForm.Designer.cs">
-      <DependentUpon>newTemplateForm.cs</DependentUpon>
+    <Compile Include="NewTemplateForm.Designer.cs">
+      <DependentUpon>NewTemplateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="templateForm.cs">
+    <Compile Include="PhraseBuildingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="templateForm.Designer.cs">
-      <DependentUpon>templateForm.cs</DependentUpon>
+    <Compile Include="PhraseBuildingForm.Designer.cs">
+      <DependentUpon>PhraseBuildingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuForm.cs">
+    <Compile Include="TemplateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="menuForm.Designer.cs">
-      <DependentUpon>menuForm.cs</DependentUpon>
+    <Compile Include="TemplateForm.Designer.cs">
+      <DependentUpon>TemplateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="deleteTemplateForm.resx">
-      <DependentUpon>deleteTemplateForm.cs</DependentUpon>
+    <EmbeddedResource Include="DeleteTemplateForm.resx">
+      <DependentUpon>DeleteTemplateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="exportTemplateForm.resx">
-      <DependentUpon>exportTemplateForm.cs</DependentUpon>
+    <EmbeddedResource Include="ExportTemplateForm.resx">
+      <DependentUpon>ExportTemplateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="newNameForm.resx">
-      <DependentUpon>newNameForm.cs</DependentUpon>
+    <EmbeddedResource Include="NewNameForm.resx">
+      <DependentUpon>NewNameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="newTemplateForm.resx">
-      <DependentUpon>newTemplateForm.cs</DependentUpon>
+    <EmbeddedResource Include="NewTemplateForm.resx">
+      <DependentUpon>NewTemplateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="templateForm.resx">
-      <DependentUpon>templateForm.cs</DependentUpon>
+    <EmbeddedResource Include="PhraseBuildingForm.resx">
+      <DependentUpon>PhraseBuildingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menuForm.resx">
-      <DependentUpon>menuForm.cs</DependentUpon>
+    <EmbeddedResource Include="TemplateForm.resx">
+      <DependentUpon>TemplateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

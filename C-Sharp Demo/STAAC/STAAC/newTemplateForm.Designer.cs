@@ -1,6 +1,6 @@
 ﻿
 namespace STAAC {
-    partial class newTemplateForm {
+    partial class NewTemplateForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -24,7 +24,7 @@ namespace STAAC {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(newTemplateForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewTemplateForm));
             this.lblAuthor = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblWidth = new System.Windows.Forms.Label();
@@ -206,7 +206,6 @@ namespace STAAC {
             this.cbColorScheme.FormattingEnabled = true;
             this.cbColorScheme.Items.AddRange(new object[] {
             "None",
-            "Rainbow",
             "Pink",
             "Brown",
             "Red",
@@ -221,7 +220,7 @@ namespace STAAC {
             this.cbColorScheme.Size = new System.Drawing.Size(286, 33);
             this.cbColorScheme.TabIndex = 15;
             // 
-            // newTemplateForm
+            // NewTemplateForm
             // 
             this.AcceptButton = this.btnCreate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -235,10 +234,10 @@ namespace STAAC {
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "newTemplateForm";
+            this.Name = "NewTemplateForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Template";
             this.Load += new System.EventHandler(this.NewTemplateForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewTemplateForm_KeyDown);

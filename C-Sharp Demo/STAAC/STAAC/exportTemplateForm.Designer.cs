@@ -89,7 +89,7 @@ namespace STAAC {
             this.Name = "ExportTemplateForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select Template to Export";
             this.Load += new System.EventHandler(this.ExportTemplateForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ExportTemplateForm_KeyDown);

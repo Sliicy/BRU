@@ -16,7 +16,7 @@ namespace STAAC {
             InitializeComponent();
         }
 
-        string originalName = "";
+        readonly string originalName = "";
         public string newName = "";
         public bool saveChanges = false;
 
@@ -25,7 +25,7 @@ namespace STAAC {
             originalName = oldName;
         }
 
-            private void NewNameForm_KeyDown(object sender, KeyEventArgs e) {
+        private void NewNameForm_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Escape) {
                 Close();
             }
@@ -48,6 +48,9 @@ namespace STAAC {
             } else {
                 newName = txtName.Text;
                 saveChanges = true;
+                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, originalName + ".png"))) {
+                    File.Move(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, originalName + ".png"), Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, newName + ".png"));
+                }
                 Close();
             }
         }

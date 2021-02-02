@@ -16,9 +16,7 @@ namespace STAAC {
     public partial class TemplateForm : Form {
 
         // List of words that the user is angry about (deliberately repeatedly pressing):
-        List<string> emphasizable = new List<string>();
-
-        
+        readonly List<string> emphasizable = new List<string>();
 
         // Controls whether the template is in edit mode:
         bool editMode = false;
@@ -28,24 +26,29 @@ namespace STAAC {
         Point dragLocation = new Point();
         Point oldButtonLocation = new Point();
 
+        #region Metadata about the template
         string author = "";
         string category = "";
         string colorScheme = "None";
-
+        // Contains dimensions each button should follow:
         int buttonWidth = 0;
         int buttonHeight = 0;
-
+        // String representation of matrix:
         string matrixData = "";
-
+        // Contains dimensions of matrix:
         int matrixWidth = 1;
         int matrixHeight = 1;
+        #endregion
 
+        // Speech object used to speak:
+        SpeechSynthesizer narrator;
+
+        // Remember the last phrase just spoken:
+        string lastPhraseSpoken = "";
 
         public TemplateForm() {
             InitializeComponent();
         }
-
-        SpeechSynthesizer narrator;
 
         /*
          * Load a bitmap without locking it:
@@ -76,9 +79,6 @@ namespace STAAC {
                 if (colorScheme.Length > 0) {
                     switch (colorScheme.ToLower()) {
                         case "none":
-                            break;
-                        case "rainbow":
-
                             break;
                         default:
                             newButton.BackColor = Color.FromName(colorScheme);
@@ -133,6 +133,9 @@ namespace STAAC {
 
         // This function saves all changes to file:
         void SaveSettings() {
+            if (!Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate))) {
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate));
+            }
             File.WriteAllText(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName), 
                 "Author=" + author + Environment.NewLine +
                 "Category=" + category + Environment.NewLine +
@@ -150,46 +153,25 @@ namespace STAAC {
             if (Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate))) {
                 if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
 
-
-
                     foreach (string line in File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
                         if (line.ToLower().Contains("author")) {
-
                             author = line.Split('=')[1];
                         } else if (line.ToLower().Contains("category")) {
-
                             category = line.Split('=')[1];
-
-
-
-
                         } else if (line.ToLower().Contains("matrix size")) {
                             // Read Matrix size:
                             matrixWidth = int.Parse(line.Split('=')[1].Split('x')[0]);
                             matrixHeight = int.Parse(line.Split('=')[1].Split('x')[1]);
 
-
-
                         } else if (line.ToLower().Contains("color scheme")) {
 
                             colorScheme = line.Split('=')[1];
-
-                            // Apply a color scheme:
-                            switch (colorScheme) {
-                                case "rainbow":
-
-                                    break;
-                                case "red":
-
-                                    break;
-                            }
 
                         } else if (line.ToLower().Contains("matrix data")) {
                             // Read all the button names and create buttons for each one:
                             matrixData = line;
                             ReloadButtons(matrixData);
                         }
-
                     }
                 } else {
                     // Settings file wasn't found. Abort:
@@ -214,26 +196,18 @@ namespace STAAC {
         }
 
         void ButtonClick(object sender, EventArgs e) {
+            Button buttonPressed = (Button)sender;
             if (editMode) {
-                Button buttonClicked = (Button)sender;
-                if (oldButtonLocation == buttonClicked.Location) {
-                    NewNameForm n = new NewNameForm(buttonClicked.Text);
+                if (oldButtonLocation == buttonPressed.Location) {
+                    NewNameForm n = new NewNameForm(buttonPressed.Text);
                     n.ShowDialog();
-                    if (n.saveChanges) buttonClicked.Text = n.newName;
-                    buttonClicked.BackgroundImage = null;
-                    AddPicture(buttonClicked.Text, buttonClicked);
+                    if (n.saveChanges) buttonPressed.Text = n.newName;
+                    buttonPressed.BackgroundImage = null;
+                    AddPicture(buttonPressed.Text, buttonPressed);
                     n.Dispose();
                 }
             } else {
-                narrator = new SpeechSynthesizer();
-                Button buttonPressed = (Button)sender;
-                if (emphasizable.Contains(buttonPressed.Text)) {
-                    narrator.SpeakSsmlAsync("<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xml:lang=\"en-US\"><emphasis>" + buttonPressed.Text + "</emphasis></speak>");
-                } else {
-                    narrator.SpeakAsync(buttonPressed.Text);
-                    emphasizable.Add(buttonPressed.Text);
-                    coolDown.Start();
-                }
+                txtSpeechBar.Text += " " + buttonPressed.Text;
             }
         }
         void ButtonMouseDown(object sender, MouseEventArgs e) {
@@ -294,9 +268,11 @@ namespace STAAC {
         private void BtnEdit_Click(object sender, EventArgs e) {
             editMode = !editMode;
             if (editMode) {
-                btnEdit.Text = "Don&e";
+                btnEdit.Text = "Sav&e Changes";
+                btnEdit.BackColor = Color.Yellow;
             } else {
                 btnEdit.Text = "&Edit Buttons";
+                btnEdit.BackColor = Color.FromKnownColor(KnownColor.Control);
                 RecalculateMatrix();
                 SaveSettings();
             }
@@ -312,6 +288,35 @@ namespace STAAC {
 
         private void BtnBack_Click(object sender, EventArgs e) {
             Close();
+        }
+
+        private void BtnSpeak_Click(object sender, EventArgs e) {
+            narrator = new SpeechSynthesizer();
+            if (emphasizable.Contains(txtSpeechBar.Text)) {
+                narrator.SpeakSsmlAsync("<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xml:lang=\"en-US\"><emphasis>" + txtSpeechBar.Text + "</emphasis></speak>");
+            } else {
+                narrator.SpeakAsync(txtSpeechBar.Text);
+                emphasizable.Add(txtSpeechBar.Text);
+                coolDown.Start();
+            }
+            lastPhraseSpoken = txtSpeechBar.Text;
+            btnClear.PerformClick();
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e) {
+            txtSpeechBar.Clear();
+        }
+
+        private void BtnRepeat_Click(object sender, EventArgs e) {
+            txtSpeechBar.Text = lastPhraseSpoken;
+            btnSpeak.PerformClick();
+        }
+
+        private void TxtSpeechBar_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Enter) {
+                e.Handled = true;
+                btnSpeak.PerformClick();
+            }
         }
     }
 }

@@ -55,7 +55,6 @@ namespace STAAC {
 
         private void MenuForm_Load(object sender, EventArgs e) {
             RefreshTemplateList();
-
         }
 
         protected void TemplateChosen(object sender, EventArgs e) {
@@ -73,7 +72,7 @@ namespace STAAC {
         }
 
         private void BtnNew_Click(object sender, EventArgs e) {
-            var newTemplate = new newTemplateForm();
+            var newTemplate = new NewTemplateForm();
             newTemplate.ShowDialog();
             RefreshTemplateList();
         }
@@ -102,7 +101,7 @@ namespace STAAC {
         }
 
         private void BtnDelete_Click(object sender, EventArgs e) {
-            deleteTemplateForm d = new deleteTemplateForm();
+            DeleteTemplateForm d = new DeleteTemplateForm();
             d.ShowDialog();
             RefreshTemplateList();
         }

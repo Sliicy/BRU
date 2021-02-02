@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("STAAC")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Short-Term, Alternative Augmentative communication program to facilitate speech for the impaired.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("STAAC")]
 [assembly: AssemblyProduct("STAAC")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright © Steven Balgley, Jose Aguilar, Kevin Moreno, Anders Saiz 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace STAAC {
-    public partial class deleteTemplateForm : Form {
-        public deleteTemplateForm() {
+    public partial class DeleteTemplateForm : Form {
+        public DeleteTemplateForm() {
             InitializeComponent();
         }
         void RefreshFolderList() {

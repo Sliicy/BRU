@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace STAAC {
-    public partial class newTemplateForm : Form {
-        public newTemplateForm() {
+    public partial class NewTemplateForm : Form {
+        public NewTemplateForm() {
             InitializeComponent();
         }
 
