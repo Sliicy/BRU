@@ -44,7 +44,7 @@ namespace STAAC {
         }
 
         private void NewTemplateForm_KeyDown(object sender, KeyEventArgs e) {
-            if (e.KeyCode == Keys.Escape) {
+            if (e.KeyCode == Keys.Escape || (ModifierKeys == Keys.Control && e.KeyCode == Keys.W)) {
                 Close();
             }
         }

@@ -46,6 +46,9 @@ namespace STAAC {
         // Remember the last phrase just spoken:
         string lastPhraseSpoken = "";
 
+        // Controls whether to clear the speech box:
+        bool clearTextOnNextPress = false;
+
         public TemplateForm() {
             InitializeComponent();
         }
@@ -54,7 +57,7 @@ namespace STAAC {
          * Load a bitmap without locking it:
          * Source: http://csharphelper.com/blog/2014/07/load-images-without-locking-their-files-in-c/
         */
-        private static Bitmap LoadBitmapUnlocked(string fileName) {
+        public static Bitmap LoadBitmapUnlocked(string fileName) {
             using (Bitmap bm = new Bitmap(fileName)) {
                 return new Bitmap(bm);
             }
@@ -149,6 +152,12 @@ namespace STAAC {
             // Insert template name into window title:
             Text = "STAAC - " + MenuForm.selectedTemplate;
 
+            // Create wordlists folder if it doesn't exist:
+            if (!Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName))) {
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName));
+            }
+
+
             // Try to load appropriate template:
             if (Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate))) {
                 if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
@@ -196,6 +205,13 @@ namespace STAAC {
         }
 
         void ButtonClick(object sender, EventArgs e) {
+
+            // Erase old words if new phrase:
+            if (clearTextOnNextPress) {
+                txtSpeechBar.Clear();
+            }
+            clearTextOnNextPress = false;
+            
             Button buttonPressed = (Button)sender;
             if (editMode) {
                 if (oldButtonLocation == buttonPressed.Location) {
@@ -207,9 +223,18 @@ namespace STAAC {
                     n.Dispose();
                 }
             } else {
-                txtSpeechBar.Text += " " + buttonPressed.Text;
+                // Process any special words that have dictionaries associated with them:
+                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, buttonPressed.Text + ".txt"))) {
+                    var wordForm = new PhraseBuildingForm(buttonPressed.Text);
+                    wordForm.ShowDialog();
+                    string fullPhrase = wordForm.ProcessPhrase();
+                    txtSpeechBar.Text += " " + fullPhrase;
+                } else {
+                    txtSpeechBar.Text += " " + buttonPressed.Text;
+                }
             }
         }
+
         void ButtonMouseDown(object sender, MouseEventArgs e) {
             // Responsible for initiating a button drag:
             if (editMode) {
@@ -223,6 +248,7 @@ namespace STAAC {
                 dragLocation = new Point(MousePosition.X - RectangleToScreen(ClientRectangle).Left - pnlButtons.Left - buttonDragged.Left, MousePosition.Y - RectangleToScreen(ClientRectangle).Top - pnlButtons.Top - buttonDragged.Top);
             }
         }
+
         void ButtonMouseMove(object sender, MouseEventArgs e) {
             // Responsible for processing the button drag:
             if (mouseDragging) {
@@ -231,6 +257,7 @@ namespace STAAC {
                 buttonDragged.Top = MousePosition.Y - RectangleToScreen(ClientRectangle).Top - pnlButtons.Top - dragLocation.Y;
             }
         }
+
         void ButtonMouseUp(object sender, MouseEventArgs e) {
             // Stops the button drag:
             mouseDragging = false;
@@ -299,8 +326,8 @@ namespace STAAC {
                 emphasizable.Add(txtSpeechBar.Text);
                 coolDown.Start();
             }
+            clearTextOnNextPress = true;
             lastPhraseSpoken = txtSpeechBar.Text;
-            btnClear.PerformClick();
         }
 
         private void BtnClear_Click(object sender, EventArgs e) {

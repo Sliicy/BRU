@@ -16,11 +16,16 @@ namespace STAAC {
             InitializeComponent();
         }
 
-        public static string selectedTemplate = "";
+        public static string selectedTemplate = ""; // Contains the name of the active template being used.
         public readonly static string templateFolderName = "Templates";
+        public readonly static string wordlistsFolderName = "Wordlists";
         public readonly static string settingsFileName = "info.txt";
 
         void RefreshTemplateList() {
+            /*
+             Refreshes the list of templates.
+             */
+
             // Remove pre-existing buttons:
             foreach (Control c in pnlButtons.Controls) {
                 pnlButtons.Controls.Remove(c);
@@ -36,7 +41,7 @@ namespace STAAC {
 
                 foreach (var folder in folders) {
 
-                    // Create a button for the folder:
+                    // Create a button for each folder:
                     Button template = new Button {
                         Text = Path.GetFileName(folder.Name),
                         Height = btnNew.Height,
@@ -58,8 +63,9 @@ namespace STAAC {
         }
 
         protected void TemplateChosen(object sender, EventArgs e) {
-            /* This function is called by whichever template button is pressed by user.
-               It then calls the templateForm with the corresponding selected template.
+            /*
+             This function is called by whichever template button is pressed by the user.
+             It then calls the templateForm with the corresponding selected template.
              */
 
             // Keep track of selected template:

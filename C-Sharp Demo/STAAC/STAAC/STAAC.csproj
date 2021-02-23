@@ -67,6 +67,7 @@
     <Compile Include="ExportTemplateForm.Designer.cs">
       <DependentUpon>ExportTemplateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ButtonModel.cs" />
     <Compile Include="NewNameForm.cs">
       <SubType>Form</SubType>
     </Compile>
