@@ -41,6 +41,7 @@ namespace STAAC {
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnCancel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnCancel_HelpRequested);
             // 
             // btnExport
             // 
@@ -53,6 +54,7 @@ namespace STAAC {
             this.btnExport.Text = "E&xport Selected Template";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnExport_HelpRequested);
             // 
             // lstTemplates
             // 
@@ -68,6 +70,7 @@ namespace STAAC {
             this.lstTemplates.Sorted = true;
             this.lstTemplates.TabIndex = 3;
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.LstTemplates_SelectedIndexChanged);
+            this.lstTemplates.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.LstTemplates_HelpRequested);
             // 
             // ExportTemplateForm
             // 
@@ -80,6 +83,7 @@ namespace STAAC {
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lstTemplates);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(6);

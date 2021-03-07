@@ -51,5 +51,17 @@ namespace STAAC {
         private void LstTemplates_SelectedIndexChanged(object sender, EventArgs e) {
             btnDelete.Enabled = lstTemplates.SelectedItem != null;
         }
+
+        private void LstTemplates_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Click a template from this list to delete. It should be highlighted blue.");
+        }
+
+        private void BtnDelete_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Pressing this button with a template highlighted in blue will ask whether you're sure you want to delete it. Answering yes will delete it.");
+        }
+
+        private void BtnCancel_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Cancel the operation.");
+        }
     }
 }

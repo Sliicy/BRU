@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Compression;
+using STAAC.Models;
 
 namespace STAAC {
     public partial class MenuForm : Form {
@@ -20,6 +21,11 @@ namespace STAAC {
         public readonly static string templateFolderName = "Templates";
         public readonly static string wordlistsFolderName = "Wordlists";
         public readonly static string settingsFileName = "info.txt";
+
+        // Method used throughout program to control flow of help dialogues:
+        public static void ShowHelp(string message) {
+            MessageBox.Show(message, "Help", MessageBoxButtons.OK, MessageBoxIcon.Question);
+        }
 
         void RefreshTemplateList() {
             /*
@@ -36,14 +42,37 @@ namespace STAAC {
             if (Directory.Exists(templatePath)) {
                 int buttonCount = 0;
 
-                DirectoryInfo d = new DirectoryInfo(templatePath);
-                DirectoryInfo[] folders = d.GetDirectories().OrderByDescending(t => t.LastWriteTime).ToArray();
+                // List of folderTimes used to keep track of all templates by date:
+                var folderTimes = new List<FolderDates>();
 
+                // Calculate each datetime of each folder based on settings file:
+                DirectoryInfo di = new DirectoryInfo(templatePath);
+                DirectoryInfo[] folders = di.GetDirectories();
                 foreach (var folder in folders) {
+                    var f = File.ReadAllLines(Path.Combine(folder.FullName, settingsFileName));
+                    foreach (string line in f) {
+                        if (line.ToLower().Contains("last accessed")) {
 
+                            // Create a new FolderDate object, and store name and date:
+                            var fd = new FolderDates {
+                                Name = Path.GetFileName(folder.Name),
+                                Modified = DateTime.Parse(line.Split('=')[1])
+                            };
+                            folderTimes.Add(fd);
+
+                            // Skip to next folder:
+                            break;
+                        }
+                    }
+                }
+
+                // Sort by datetime:
+                folderTimes.Sort((x, y) => DateTime.Compare(y.Modified, x.Modified));
+                
+                foreach (var folderItem in folderTimes) {
                     // Create a button for each folder:
                     Button template = new Button {
-                        Text = Path.GetFileName(folder.Name),
+                        Text = Path.GetFileName(folderItem.Name),
                         Height = btnNew.Height,
                         Width = pnlButtons.Width,
                         Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
@@ -53,6 +82,7 @@ namespace STAAC {
                     pnlButtons.Controls.Add(template);
                     buttonCount++;
                 }
+
             } else {
                 Directory.CreateDirectory(templatePath);
             }
@@ -75,12 +105,13 @@ namespace STAAC {
             // Show the template:
             TemplateForm form = new TemplateForm();
             form.ShowDialog();
+            Application.Restart();
         }
 
         private void BtnNew_Click(object sender, EventArgs e) {
             var newTemplate = new NewTemplateForm();
             newTemplate.ShowDialog();
-            RefreshTemplateList();
+            Application.Restart();
         }
 
         private void BtnImport_Click(object sender, EventArgs e) {
@@ -109,7 +140,27 @@ namespace STAAC {
         private void BtnDelete_Click(object sender, EventArgs e) {
             DeleteTemplateForm d = new DeleteTemplateForm();
             d.ShowDialog();
-            RefreshTemplateList();
+            Application.Restart();
+        }
+
+        private void BtnNew_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            ShowHelp("Press this button to create a new template.");
+        }
+
+        private void BtnImport_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            ShowHelp("Press this button to import an existing template from your computer (such as one being shared by others).");
+        }
+
+        private void BtnDelete_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            ShowHelp("Press this button to remove a template.");
+        }
+
+        private void BtnExport_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            ShowHelp("Press this button to export and share any template with others, saving it as a compressed zip file.");
+        }
+
+        private void PnlButtons_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            ShowHelp("Press any button here to load a template and start using it.");
         }
     }
 }

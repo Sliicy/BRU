@@ -175,7 +175,6 @@ namespace STAAC {
                         } else if (line.ToLower().Contains("color scheme")) {
 
                             colorScheme = line.Split('=')[1];
-
                         } else if (line.ToLower().Contains("matrix data")) {
                             // Read all the button names and create buttons for each one:
                             matrixData = line;
@@ -215,7 +214,7 @@ namespace STAAC {
             Button buttonPressed = (Button)sender;
             if (editMode) {
                 if (oldButtonLocation == buttonPressed.Location) {
-                    NewNameForm n = new NewNameForm(buttonPressed.Text);
+                    EditButtonForm n = new EditButtonForm(buttonPressed.Text);
                     n.ShowDialog();
                     if (n.saveChanges) buttonPressed.Text = n.newName;
                     buttonPressed.BackgroundImage = null;
@@ -232,6 +231,7 @@ namespace STAAC {
                 } else {
                     txtSpeechBar.Text += " " + buttonPressed.Text;
                 }
+                txtSpeechBar.Text = txtSpeechBar.Text.Trim();
             }
         }
 
@@ -336,6 +336,7 @@ namespace STAAC {
 
         private void BtnRepeat_Click(object sender, EventArgs e) {
             txtSpeechBar.Text = lastPhraseSpoken;
+            txtSpeechBar.Text = txtSpeechBar.Text.Trim();
             btnSpeak.PerformClick();
         }
 
@@ -344,6 +345,50 @@ namespace STAAC {
                 e.Handled = true;
                 btnSpeak.PerformClick();
             }
+        }
+
+        private void TxtSpeechBar_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("This textbox will fill with words clicked from the word matrix. It is spoken when the \"Speak\" button is pressed.");
+        }
+
+        private void BtnSpeak_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Press this button to speak the text in the textbox.");
+        }
+
+        private void BtnClear_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Press this to clear the textbox of all words.");
+        }
+
+        private void BtnRightPanel_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Pressing any of the buttons in the right panel will immediately speak it aloud. These buttons can't be changed for safety reasons.");
+        }
+
+        private void BtnBack_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Go back to the previous menu.");
+        }
+
+        private void BtnOnScreenKeyboard_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Press this to show an on-screen keyboard (must be running Windows 10 or newer).");
+        }
+
+        private void BtnEdit_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Press this button to change the position, imagery, text, or word associations with the word matrix. Buttons can be edited when this button is yellow.");
+        }
+
+        private void BtnRepeat_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Repeat the last spoken phrase.");
+        }
+
+        private void BtnHelp_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("This is a universal help button that's always available in the bottom right corner.");
+        }
+
+        private void PnlButtons_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Press any of these buttons to add the text to the textbox at the top of the window. Alternatively, press \"Edit Buttons\" and then click a button to modify it.");
+        }
+
+        private void TemplateForm_FormClosing(object sender, FormClosingEventArgs e) {
+            SaveSettings();
         }
     }
 }

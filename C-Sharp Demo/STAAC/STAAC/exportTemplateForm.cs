@@ -58,5 +58,17 @@ namespace STAAC {
                 Close();
             }
         }
+
+        private void LstTemplates_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Click a template from this list to export. It should be highlighted blue.");
+        }
+
+        private void BtnExport_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Pressing this button with a template highlighted in blue will ask where to export the template to, so you can share it with others.");
+        }
+
+        private void BtnCancel_HelpRequested(object sender, HelpEventArgs hlpevent) {
+            MenuForm.ShowHelp("Cancel the operation.");
+        }
     }
 }

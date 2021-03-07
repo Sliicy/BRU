@@ -52,6 +52,7 @@ namespace STAAC {
             this.lblAuthor.Size = new System.Drawing.Size(75, 25);
             this.lblAuthor.TabIndex = 3;
             this.lblAuthor.Text = "&Author";
+            this.lblAuthor.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtAuthor_HelpRequested);
             // 
             // lblCategory
             // 
@@ -62,6 +63,7 @@ namespace STAAC {
             this.lblCategory.Size = new System.Drawing.Size(99, 25);
             this.lblCategory.TabIndex = 5;
             this.lblCategory.Text = "Ca&tegory";
+            this.lblCategory.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtCategory_HelpRequested);
             // 
             // lblWidth
             // 
@@ -72,6 +74,7 @@ namespace STAAC {
             this.lblWidth.Size = new System.Drawing.Size(67, 25);
             this.lblWidth.TabIndex = 7;
             this.lblWidth.Text = "&Width";
+            this.lblWidth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtWidth_HelpRequested);
             // 
             // lblHeight
             // 
@@ -82,6 +85,7 @@ namespace STAAC {
             this.lblHeight.Size = new System.Drawing.Size(74, 25);
             this.lblHeight.TabIndex = 9;
             this.lblHeight.Text = "&Height";
+            this.lblHeight.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtHeight_HelpRequested);
             // 
             // lblColorScheme
             // 
@@ -92,6 +96,7 @@ namespace STAAC {
             this.lblColorScheme.Size = new System.Drawing.Size(147, 25);
             this.lblColorScheme.TabIndex = 11;
             this.lblColorScheme.Text = "Color &Scheme";
+            this.lblColorScheme.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.CbColorScheme_HelpRequested);
             // 
             // btnCreate
             // 
@@ -103,6 +108,7 @@ namespace STAAC {
             this.btnCreate.Text = "&Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
+            this.btnCreate.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnCreate_HelpRequested);
             // 
             // btnCancel
             // 
@@ -115,6 +121,7 @@ namespace STAAC {
             this.btnCancel.Text = "C&ancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnCancel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnCancel_HelpRequested);
             // 
             // lblName
             // 
@@ -125,6 +132,7 @@ namespace STAAC {
             this.lblName.Size = new System.Drawing.Size(68, 25);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "&Name";
+            this.lblName.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtName_HelpRequested);
             // 
             // txtName
             // 
@@ -133,6 +141,7 @@ namespace STAAC {
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(286, 31);
             this.txtName.TabIndex = 2;
+            this.txtName.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtName_HelpRequested);
             // 
             // tblMain
             // 
@@ -174,6 +183,7 @@ namespace STAAC {
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(286, 31);
             this.txtAuthor.TabIndex = 4;
+            this.txtAuthor.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtAuthor_HelpRequested);
             // 
             // txtCategory
             // 
@@ -182,6 +192,7 @@ namespace STAAC {
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(286, 31);
             this.txtCategory.TabIndex = 6;
+            this.txtCategory.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtCategory_HelpRequested);
             // 
             // txtWidth
             // 
@@ -190,6 +201,9 @@ namespace STAAC {
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(286, 31);
             this.txtWidth.TabIndex = 8;
+            this.txtWidth.TextChanged += new System.EventHandler(this.TxtWidth_TextChanged);
+            this.txtWidth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtWidth_HelpRequested);
+            this.txtWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWidth_KeyPress);
             // 
             // txtHeight
             // 
@@ -198,6 +212,9 @@ namespace STAAC {
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.Size = new System.Drawing.Size(286, 31);
             this.txtHeight.TabIndex = 10;
+            this.txtHeight.TextChanged += new System.EventHandler(this.TxtHeight_TextChanged);
+            this.txtHeight.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtHeight_HelpRequested);
+            this.txtHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtHeight_KeyPress);
             // 
             // cbColorScheme
             // 
@@ -219,6 +236,7 @@ namespace STAAC {
             this.cbColorScheme.Name = "cbColorScheme";
             this.cbColorScheme.Size = new System.Drawing.Size(286, 33);
             this.cbColorScheme.TabIndex = 15;
+            this.cbColorScheme.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.CbColorScheme_HelpRequested);
             // 
             // NewTemplateForm
             // 
@@ -229,6 +247,7 @@ namespace STAAC {
             this.ClientSize = new System.Drawing.Size(584, 311);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(6);

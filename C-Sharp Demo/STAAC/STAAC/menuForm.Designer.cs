@@ -42,6 +42,7 @@ namespace STAAC {
             this.btnNew.Text = "Create &New Template";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            this.btnNew.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnNew_HelpRequested);
             // 
             // btnImport
             // 
@@ -54,6 +55,7 @@ namespace STAAC {
             this.btnImport.Text = "&Import";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.BtnImport_Click);
+            this.btnImport.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnImport_HelpRequested);
             // 
             // btnExport
             // 
@@ -66,6 +68,7 @@ namespace STAAC {
             this.btnExport.Text = "E&xport";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnExport_HelpRequested);
             // 
             // pnlButtons
             // 
@@ -77,6 +80,7 @@ namespace STAAC {
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(544, 425);
             this.pnlButtons.TabIndex = 4;
+            this.pnlButtons.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.PnlButtons_HelpRequested);
             // 
             // btnDelete
             // 
@@ -88,6 +92,7 @@ namespace STAAC {
             this.btnDelete.Text = "&Delete Template";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.btnDelete.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnDelete_HelpRequested);
             // 
             // MenuForm
             // 
@@ -100,8 +105,11 @@ namespace STAAC {
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnNew);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 230);
             this.Name = "MenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

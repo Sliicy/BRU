@@ -44,6 +44,7 @@ namespace STAAC {
             this.lstTemplates.Sorted = true;
             this.lstTemplates.TabIndex = 0;
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.LstTemplates_SelectedIndexChanged);
+            this.lstTemplates.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.LstTemplates_HelpRequested);
             // 
             // btnDelete
             // 
@@ -56,10 +57,12 @@ namespace STAAC {
             this.btnDelete.Text = "&Delete Selected Template";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.btnDelete.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnDelete_HelpRequested);
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(373, 203);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(352, 50);
@@ -67,16 +70,20 @@ namespace STAAC {
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnCancel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnCancel_HelpRequested);
             // 
             // DeleteTemplateForm
             // 
+            this.AcceptButton = this.btnDelete;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(737, 265);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lstTemplates);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;

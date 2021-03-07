@@ -38,6 +38,7 @@ namespace STAAC {
             this.tlpMiddle = new System.Windows.Forms.TableLayoutPanel();
             this.tlpHeader = new System.Windows.Forms.TableLayoutPanel();
             this.btnClearSearch = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.tlpBottom.SuspendLayout();
             this.tlpMiddle.SuspendLayout();
@@ -50,9 +51,10 @@ namespace STAAC {
             this.txtSearch.Location = new System.Drawing.Point(3, 3);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(672, 38);
+            this.txtSearch.Size = new System.Drawing.Size(572, 38);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
+            this.txtSearch.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtSearch_HelpRequested);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearch_KeyDown);
             // 
             // lstWords
@@ -65,8 +67,10 @@ namespace STAAC {
             this.lstWords.ScrollAlwaysVisible = true;
             this.lstWords.Size = new System.Drawing.Size(778, 405);
             this.lstWords.Sorted = true;
-            this.lstWords.TabIndex = 4;
+            this.lstWords.TabIndex = 5;
             this.lstWords.SelectedIndexChanged += new System.EventHandler(this.LstWords_SelectedIndexChanged);
+            this.lstWords.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.LstWords_HelpRequested);
+            this.lstWords.DoubleClick += new System.EventHandler(this.LstWords_DoubleClick);
             // 
             // btnAnd
             // 
@@ -74,10 +78,11 @@ namespace STAAC {
             this.btnAnd.Location = new System.Drawing.Point(3, 3);
             this.btnAnd.Name = "btnAnd";
             this.btnAnd.Size = new System.Drawing.Size(253, 38);
-            this.btnAnd.TabIndex = 6;
+            this.btnAnd.TabIndex = 7;
             this.btnAnd.Text = "&And";
             this.btnAnd.UseVisualStyleBackColor = true;
             this.btnAnd.Click += new System.EventHandler(this.BtnAnd_Click);
+            this.btnAnd.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnAnd_HelpRequested);
             // 
             // btnOr
             // 
@@ -85,10 +90,11 @@ namespace STAAC {
             this.btnOr.Location = new System.Drawing.Point(262, 3);
             this.btnOr.Name = "btnOr";
             this.btnOr.Size = new System.Drawing.Size(253, 38);
-            this.btnOr.TabIndex = 7;
+            this.btnOr.TabIndex = 8;
             this.btnOr.Text = "&Or";
             this.btnOr.UseVisualStyleBackColor = true;
             this.btnOr.Click += new System.EventHandler(this.BtnOr_Click);
+            this.btnOr.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnAnd_HelpRequested);
             // 
             // btnNot
             // 
@@ -96,10 +102,11 @@ namespace STAAC {
             this.btnNot.Location = new System.Drawing.Point(521, 3);
             this.btnNot.Name = "btnNot";
             this.btnNot.Size = new System.Drawing.Size(254, 38);
-            this.btnNot.TabIndex = 8;
+            this.btnNot.TabIndex = 9;
             this.btnNot.Text = "&Not";
             this.btnNot.UseVisualStyleBackColor = true;
             this.btnNot.Click += new System.EventHandler(this.BtnNot_Click);
+            this.btnNot.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnAnd_HelpRequested);
             // 
             // btnDone
             // 
@@ -107,10 +114,11 @@ namespace STAAC {
             this.btnDone.Location = new System.Drawing.Point(681, 3);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(94, 38);
-            this.btnDone.TabIndex = 12;
+            this.btnDone.TabIndex = 13;
             this.btnDone.Text = "&Done";
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.BtnDone_Click);
+            this.btnDone.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnDone_HelpRequested);
             // 
             // tlpMain
             // 
@@ -146,7 +154,7 @@ namespace STAAC {
             this.tlpBottom.RowCount = 1;
             this.tlpBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpBottom.Size = new System.Drawing.Size(778, 44);
-            this.tlpBottom.TabIndex = 9;
+            this.tlpBottom.TabIndex = 10;
             // 
             // btnClear
             // 
@@ -154,10 +162,11 @@ namespace STAAC {
             this.btnClear.Location = new System.Drawing.Point(581, 3);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(94, 38);
-            this.btnClear.TabIndex = 11;
+            this.btnClear.TabIndex = 12;
             this.btnClear.Text = "Clea&r";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            this.btnClear.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnClear_HelpRequested);
             // 
             // txtPhrase
             // 
@@ -166,7 +175,8 @@ namespace STAAC {
             this.txtPhrase.Multiline = true;
             this.txtPhrase.Name = "txtPhrase";
             this.txtPhrase.Size = new System.Drawing.Size(572, 38);
-            this.txtPhrase.TabIndex = 10;
+            this.txtPhrase.TabIndex = 11;
+            this.txtPhrase.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtPhrase_HelpRequested);
             this.txtPhrase.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPhrase_KeyDown);
             // 
             // tlpMiddle
@@ -184,15 +194,17 @@ namespace STAAC {
             this.tlpMiddle.RowCount = 1;
             this.tlpMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMiddle.Size = new System.Drawing.Size(778, 44);
-            this.tlpMiddle.TabIndex = 5;
+            this.tlpMiddle.TabIndex = 6;
             // 
             // tlpHeader
             // 
-            this.tlpHeader.ColumnCount = 2;
+            this.tlpHeader.ColumnCount = 3;
             this.tlpHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tlpHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tlpHeader.Controls.Add(this.txtSearch, 0, 0);
-            this.tlpHeader.Controls.Add(this.btnClearSearch, 1, 0);
+            this.tlpHeader.Controls.Add(this.btnClearSearch, 2, 0);
+            this.tlpHeader.Controls.Add(this.btnAdd, 1, 0);
             this.tlpHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpHeader.Location = new System.Drawing.Point(3, 3);
             this.tlpHeader.Name = "tlpHeader";
@@ -203,22 +215,35 @@ namespace STAAC {
             // 
             // btnClearSearch
             // 
-            this.btnClearSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnClearSearch.Location = new System.Drawing.Point(681, 3);
             this.btnClearSearch.Name = "btnClearSearch";
             this.btnClearSearch.Size = new System.Drawing.Size(94, 38);
-            this.btnClearSearch.TabIndex = 3;
+            this.btnClearSearch.TabIndex = 4;
             this.btnClearSearch.Text = "&Clear";
             this.btnClearSearch.UseVisualStyleBackColor = true;
             this.btnClearSearch.Click += new System.EventHandler(this.BtnClearSearch_Click);
+            this.btnClearSearch.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnClearSearch_HelpRequested);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(581, 3);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(94, 38);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnAdd_HelpRequested);
             // 
             // PhraseBuildingForm
             // 
+            this.AcceptButton = this.btnDone;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tlpMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -256,5 +281,6 @@ namespace STAAC {
         private System.Windows.Forms.TableLayoutPanel tlpHeader;
         private System.Windows.Forms.TableLayoutPanel tlpBottom;
         private System.Windows.Forms.TableLayoutPanel tlpMiddle;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

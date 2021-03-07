@@ -74,6 +74,7 @@ namespace STAAC {
             this.btnHelp.Text = "&Help";
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnHelp.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnHelp_HelpRequested);
             // 
             // coolDown
             // 
@@ -91,6 +92,7 @@ namespace STAAC {
             this.btnOnScreenKeyboard.Text = "&Keyboard ⌨";
             this.btnOnScreenKeyboard.UseVisualStyleBackColor = true;
             this.btnOnScreenKeyboard.Click += new System.EventHandler(this.BtnOnScreenKeyboard_Click);
+            this.btnOnScreenKeyboard.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnOnScreenKeyboard_HelpRequested);
             // 
             // btnBack
             // 
@@ -103,6 +105,7 @@ namespace STAAC {
             this.btnBack.Text = "&Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            this.btnBack.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnBack_HelpRequested);
             // 
             // btnEdit
             // 
@@ -114,6 +117,7 @@ namespace STAAC {
             this.btnEdit.Text = "&Edit Buttons";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            this.btnEdit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnEdit_HelpRequested);
             // 
             // pnlButtons
             // 
@@ -122,6 +126,7 @@ namespace STAAC {
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(598, 582);
             this.pnlButtons.TabIndex = 4;
+            this.pnlButtons.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.PnlButtons_HelpRequested);
             this.pnlButtons.Resize += new System.EventHandler(this.PnlButtons_Resize);
             // 
             // tlpDock
@@ -155,6 +160,7 @@ namespace STAAC {
             this.btnRepeat.Text = "&Repeat ⭮";
             this.btnRepeat.UseVisualStyleBackColor = true;
             this.btnRepeat.Click += new System.EventHandler(this.BtnRepeat_Click);
+            this.btnRepeat.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRepeat_HelpRequested);
             // 
             // tableLayoutPanel1
             // 
@@ -206,6 +212,7 @@ namespace STAAC {
             this.btnOn.Text = "On";
             this.btnOn.UseVisualStyleBackColor = false;
             this.btnOn.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnOn.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnYes
             // 
@@ -217,6 +224,7 @@ namespace STAAC {
             this.btnYes.Text = "&Yes";
             this.btnYes.UseVisualStyleBackColor = true;
             this.btnYes.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnYes.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnOff
             // 
@@ -230,6 +238,7 @@ namespace STAAC {
             this.btnOff.Text = "Off";
             this.btnOff.UseVisualStyleBackColor = false;
             this.btnOff.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnOff.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnNo
             // 
@@ -241,6 +250,7 @@ namespace STAAC {
             this.btnNo.Text = "&No";
             this.btnNo.UseVisualStyleBackColor = true;
             this.btnNo.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnNo.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnGood
             // 
@@ -252,6 +262,7 @@ namespace STAAC {
             this.btnGood.Text = "Good";
             this.btnGood.UseVisualStyleBackColor = true;
             this.btnGood.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnGood.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnMaybe
             // 
@@ -263,6 +274,7 @@ namespace STAAC {
             this.btnMaybe.Text = "Maybe";
             this.btnMaybe.UseVisualStyleBackColor = true;
             this.btnMaybe.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnMaybe.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnNot
             // 
@@ -274,6 +286,7 @@ namespace STAAC {
             this.btnNot.Text = "Not";
             this.btnNot.UseVisualStyleBackColor = true;
             this.btnNot.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnNot.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnGo
             // 
@@ -286,6 +299,7 @@ namespace STAAC {
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = false;
             this.btnGo.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnGo.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnStop
             // 
@@ -299,6 +313,7 @@ namespace STAAC {
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnStop.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnHot
             // 
@@ -311,6 +326,7 @@ namespace STAAC {
             this.btnHot.Text = "Hot";
             this.btnHot.UseVisualStyleBackColor = false;
             this.btnHot.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnHot.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnCold
             // 
@@ -323,6 +339,7 @@ namespace STAAC {
             this.btnCold.Text = "Cold";
             this.btnCold.UseVisualStyleBackColor = false;
             this.btnCold.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnCold.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnUp
             // 
@@ -334,6 +351,7 @@ namespace STAAC {
             this.btnUp.Text = "Up";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnUp.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnDown
             // 
@@ -345,6 +363,7 @@ namespace STAAC {
             this.btnDown.Text = "Down";
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnDown.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnLeft
             // 
@@ -356,6 +375,7 @@ namespace STAAC {
             this.btnLeft.Text = "Left";
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnLeft.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnRight
             // 
@@ -367,6 +387,7 @@ namespace STAAC {
             this.btnRight.Text = "Right";
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnRight.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnBetter
             // 
@@ -378,6 +399,7 @@ namespace STAAC {
             this.btnBetter.Text = "Better";
             this.btnBetter.UseVisualStyleBackColor = true;
             this.btnBetter.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnBetter.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnPain
             // 
@@ -389,6 +411,7 @@ namespace STAAC {
             this.btnPain.Text = "Pain";
             this.btnPain.UseVisualStyleBackColor = true;
             this.btnPain.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnPain.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // btnBad
             // 
@@ -400,6 +423,7 @@ namespace STAAC {
             this.btnBad.Text = "Bad";
             this.btnBad.UseVisualStyleBackColor = true;
             this.btnBad.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.btnBad.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnRightPanel_HelpRequested);
             // 
             // tlpTopBar
             // 
@@ -426,6 +450,7 @@ namespace STAAC {
             this.txtSpeechBar.Name = "txtSpeechBar";
             this.txtSpeechBar.Size = new System.Drawing.Size(592, 38);
             this.txtSpeechBar.TabIndex = 1;
+            this.txtSpeechBar.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TxtSpeechBar_HelpRequested);
             this.txtSpeechBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSpeechBar_KeyDown);
             // 
             // btnSpeak
@@ -438,6 +463,7 @@ namespace STAAC {
             this.btnSpeak.Text = "&Speak";
             this.btnSpeak.UseVisualStyleBackColor = true;
             this.btnSpeak.Click += new System.EventHandler(this.BtnSpeak_Click);
+            this.btnSpeak.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnSpeak_HelpRequested);
             // 
             // btnClear
             // 
@@ -449,6 +475,7 @@ namespace STAAC {
             this.btnClear.Text = "&Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            this.btnClear.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.BtnClear_HelpRequested);
             // 
             // TemplateForm
             // 
@@ -460,11 +487,15 @@ namespace STAAC {
             this.Controls.Add(this.tlpTopBar);
             this.Controls.Add(this.tlpDock);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TemplateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "STAAC";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TemplateForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tlpDock.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

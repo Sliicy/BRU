@@ -68,12 +68,13 @@
       <DependentUpon>ExportTemplateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ButtonModel.cs" />
-    <Compile Include="NewNameForm.cs">
+    <Compile Include="EditButtonForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewNameForm.Designer.cs">
-      <DependentUpon>NewNameForm.cs</DependentUpon>
+    <Compile Include="EditButtonForm.Designer.cs">
+      <DependentUpon>EditButtonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\FolderDates.cs" />
     <Compile Include="NewTemplateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,8 +107,8 @@
     <EmbeddedResource Include="ExportTemplateForm.resx">
       <DependentUpon>ExportTemplateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewNameForm.resx">
-      <DependentUpon>NewNameForm.cs</DependentUpon>
+    <EmbeddedResource Include="EditButtonForm.resx">
+      <DependentUpon>EditButtonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewTemplateForm.resx">
       <DependentUpon>NewTemplateForm.cs</DependentUpon>
