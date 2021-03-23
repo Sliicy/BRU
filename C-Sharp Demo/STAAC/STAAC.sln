@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAAC", "STAAC\STAAC.csproj", "{62522C6C-C962-4A8D-BFDE-C17C91E8711F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAACTests", "STAACTests\STAACTests.csproj", "{7C51442B-566F-4A4D-9136-D7861D3CE3A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAAC.Tests", "STAAC.Tests\STAAC.Tests.csproj", "{E2D282C8-D19D-4751-BC2E-536FC746F9F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{62522C6C-C962-4A8D-BFDE-C17C91E8711F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62522C6C-C962-4A8D-BFDE-C17C91E8711F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62522C6C-C962-4A8D-BFDE-C17C91E8711F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C51442B-566F-4A4D-9136-D7861D3CE3A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C51442B-566F-4A4D-9136-D7861D3CE3A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C51442B-566F-4A4D-9136-D7861D3CE3A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C51442B-566F-4A4D-9136-D7861D3CE3A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D282C8-D19D-4751-BC2E-536FC746F9F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D282C8-D19D-4751-BC2E-536FC746F9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D282C8-D19D-4751-BC2E-536FC746F9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D282C8-D19D-4751-BC2E-536FC746F9F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

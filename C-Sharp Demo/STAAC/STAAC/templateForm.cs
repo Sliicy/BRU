@@ -30,19 +30,8 @@ namespace STAAC {
         // Contains model of each template:
         readonly TemplateModel bm = new TemplateModel(MenuForm.selectedTemplate);
 
-        #region Metadata about the template
-        //string author = "";
-        //string category = "";
-        //string colorScheme = "None";
-        // Contains dimensions each button should follow:
         int buttonWidth = 0;
         int buttonHeight = 0;
-        // String representation of matrix:
-        //string matrixData = "";
-        // Contains dimensions of matrix:
-        //int matrixWidth = 1;
-        //int matrixHeight = 1;
-        #endregion
 
         // Speech object used to speak:
         SpeechSynthesizer narrator;
@@ -70,8 +59,8 @@ namespace STAAC {
         // Function that refreshes all buttons on the grid, based on the matrix data line found in the info file:
         void ReloadButtons(string line) {
             pnlButtons.Controls.Clear();
-            buttonWidth = pnlButtons.Width / bm.matrixWidth;
-            buttonHeight = pnlButtons.Height / bm.matrixHeight;
+            buttonWidth = pnlButtons.Width / bm.GetMatrixWidth();
+            buttonHeight = pnlButtons.Height / bm.GetMatrixHeight();
 
             int countX = 0;
             int countY = 0;
@@ -83,12 +72,12 @@ namespace STAAC {
                     Location = new Point(buttonWidth * countX, buttonHeight * countY)
                 };
 
-                if (bm.ColorScheme.Length > 0) {
-                    switch (bm.ColorScheme.ToLower()) {
+                if (bm.GetColorScheme().Length > 0) {
+                    switch (bm.GetColorScheme().ToLower()) {
                         case "none":
                             break;
                         default:
-                            newButton.BackColor = Color.FromName(bm.ColorScheme);
+                            newButton.BackColor = Color.FromName(bm.GetColorScheme());
                             break;
                     }
                 }
@@ -106,7 +95,7 @@ namespace STAAC {
                 pnlButtons.Controls.Add(newButton);
 
                 countX++;
-                if (countX > bm.matrixWidth - 1) {
+                if (countX > bm.GetMatrixWidth() - 1) {
                     countX = 0;
                     countY++;
                 }
@@ -122,7 +111,7 @@ namespace STAAC {
 
         // Function to remember changes made to buttons:
         void RecalculateMatrix() {
-            bm.MatrixData = "Matrix Data=";
+            bm.SetMatrixData("Matrix Data=");
 
             // Sort controls by location (top, then left):
             var allButtons = new List<Control>();
@@ -133,9 +122,9 @@ namespace STAAC {
             
             // Sequentially add each button's text into the matrixData:
             foreach (var button in leftToRightButtonList) {
-                bm.MatrixData += button.Text + ",";
+                bm.SetMatrixData(bm.GetMatrixData() + button.Text + ",");
             }
-            bm.MatrixData = bm.MatrixData.Remove(bm.MatrixData.Length - 1, 1);
+            bm.SetMatrixData(bm.GetMatrixData().Remove(bm.GetMatrixData().Length - 1, 1));
         }
 
         // This function saves all changes to file:
@@ -144,12 +133,12 @@ namespace STAAC {
                 Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate));
             }
             File.WriteAllText(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName), 
-                "Author=" + bm.Author + Environment.NewLine +
-                "Category=" + bm.Category + Environment.NewLine +
+                "Author=" + bm.GetAuthor() + Environment.NewLine +
+                "Category=" + bm.GetCategory() + Environment.NewLine +
                 "Last Accessed=" + DateTime.Now + Environment.NewLine +
-                "Matrix Size=" + bm.matrixWidth + "x" + bm.matrixHeight + Environment.NewLine +
-                "Color Scheme=" + bm.ColorScheme + Environment.NewLine +
-                bm.MatrixData);
+                "Matrix Size=" + bm.GetMatrixWidth() + "x" + bm.GetMatrixHeight() + Environment.NewLine +
+                "Color Scheme=" + bm.GetColorScheme() + Environment.NewLine +
+                bm.GetMatrixData());
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
@@ -168,21 +157,21 @@ namespace STAAC {
 
                     foreach (string line in File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
                         if (line.ToLower().Contains("author")) {
-                            bm.Author = line.Split('=')[1];
+                            bm.SetAuthor(line.Split('=')[1]);
                         } else if (line.ToLower().Contains("category")) {
-                            bm.Category = line.Split('=')[1];
+                            bm.SetCategory(line.Split('=')[1]);
                         } else if (line.ToLower().Contains("matrix size")) {
                             // Read Matrix size:
-                            bm.matrixWidth = int.Parse(line.Split('=')[1].Split('x')[0]);
-                            bm.matrixHeight = int.Parse(line.Split('=')[1].Split('x')[1]);
+                            bm.SetMatrixWidth(int.Parse(line.Split('=')[1].Split('x')[0]));
+                            bm.SetMatrixHeight(int.Parse(line.Split('=')[1].Split('x')[1]));
 
                         } else if (line.ToLower().Contains("color scheme")) {
 
-                            bm.ColorScheme = line.Split('=')[1];
+                            bm.SetColorScheme(line.Split('=')[1]);
                         } else if (line.ToLower().Contains("matrix data")) {
                             // Read all the button names and create buttons for each one:
-                            bm.MatrixData = line;
-                            ReloadButtons(bm.MatrixData);
+                            bm.SetMatrixData(line);
+                            ReloadButtons(bm.GetMatrixData());
                         }
                     }
                 } else {
@@ -312,7 +301,7 @@ namespace STAAC {
         private void PnlButtons_Resize(object sender, EventArgs e) {
             foreach (string line in File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
                 if (line.ToLower().Contains("matrix data")) {
-                    ReloadButtons(bm.MatrixData);
+                    ReloadButtons(bm.GetMatrixData());
                 }
             }
         }
