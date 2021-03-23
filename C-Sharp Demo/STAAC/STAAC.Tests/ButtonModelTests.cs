@@ -9,7 +9,7 @@ namespace STAAC.Tests {
         [InlineData("test", "")]
         public void SetName_NameShouldNotBeNull(string initial, string change) {
             // Arrange:
-            ButtonModel b = new ButtonModel(initial);
+            TemplateModel b = new TemplateModel(initial);
 
             // Act:
             b.SetName(change);

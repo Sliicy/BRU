@@ -22,6 +22,8 @@ namespace STAAC {
         public readonly static string wordlistsFolderName = "Wordlists";
         public readonly static string settingsFileName = "info.txt";
 
+        List<FolderDates> folderTimes = new List<FolderDates>();
+
         // Method used throughout program to control flow of help dialogues:
         public static void ShowHelp(string message) {
             MessageBox.Show(message, "Help", MessageBoxButtons.OK, MessageBoxIcon.Question);
@@ -43,7 +45,7 @@ namespace STAAC {
                 int buttonCount = 0;
 
                 // List of folderTimes used to keep track of all templates by date:
-                var folderTimes = new List<FolderDates>();
+                folderTimes = new List<FolderDates>();
 
                 // Calculate each datetime of each folder based on settings file:
                 DirectoryInfo di = new DirectoryInfo(templatePath);

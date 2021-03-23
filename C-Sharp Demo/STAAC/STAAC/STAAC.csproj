@@ -67,7 +67,7 @@
     <Compile Include="ExportTemplateForm.Designer.cs">
       <DependentUpon>ExportTemplateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ButtonModel.cs" />
+    <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="EditButtonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +131,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
