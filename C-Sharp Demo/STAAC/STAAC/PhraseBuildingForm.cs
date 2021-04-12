@@ -29,7 +29,7 @@ namespace STAAC {
         public PhraseBuildingForm(string initialWord) {
             InitializeComponent();
             incomingWord = initialWord;
-            if (!File.Exists(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, incomingWord + ".txt"))) {
+            if (!File.Exists(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"))) {
                 // Short-circuit and exit if file doesn't exist:
                 stringOutput = incomingWord;
                 Close();
@@ -93,7 +93,7 @@ namespace STAAC {
         }
 
         private void PhraseBuildingForm_Load(object sender, EventArgs e) {
-            words = File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, incomingWord + ".txt"));
+            words = File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"));
             lstWords.Items.AddRange(words);
         }
 
@@ -111,10 +111,10 @@ namespace STAAC {
             // Append word to wordlist file:
             var response = MessageBox.Show("Add " + txtSearch.Text + " as a subcategory of " + incomingWord + "?", "Add new word", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (response == DialogResult.Yes) {
-                File.AppendAllText(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, incomingWord + ".txt"), Environment.NewLine + txtSearch.Text);
+                File.AppendAllText(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"), Environment.NewLine + txtSearch.Text);
                 
                 // Refresh wordlist:                
-                words = File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, incomingWord + ".txt"));
+                words = File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"));
                 TxtSearch_TextChanged(sender, e);
             }
         }

@@ -25,18 +25,18 @@ namespace STAAC {
                 return;
             }
 
-            if (Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, txtName.Text))) {
+            if (Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, txtName.Text))) {
                 MessageBox.Show("A template with the name \"" + txtName.Text + "\" already exists! Please choose a different name.", "Template Name Conflict", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else {
                 if (!(txtName.Text.All(c => char.IsLetterOrDigit(c) || c == '_' || c == ' ' || c == '.' || c == '-' || c == '!'))) {
                     MessageBox.Show("Name cannot contain any special symbols.", "No Special Characters", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } else {
-                    Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, txtName.Text));
+                    Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, txtName.Text));
                     string commas = "";
                     for (int i = 1; i < int.Parse(txtWidth.Text) * int.Parse(txtHeight.Text); i++) {
                         commas += ",";
                     }
-                    File.WriteAllText(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, txtName.Text, MenuForm.settingsFileName),
+                    File.WriteAllText(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, txtName.Text, MenuForm.SETTINGS_FILE_NAME),
                         "Author=" + txtAuthor.Text + Environment.NewLine +
                         "Category=" + txtCategory.Text + Environment.NewLine +
                         "Last Accessed=" + DateTime.Now + Environment.NewLine +

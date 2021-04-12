@@ -103,8 +103,8 @@ namespace STAAC {
         }
 
         private static void AddPicture(string filename, Button button) {
-            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, filename + ".png"))) {
-                button.BackgroundImage = LoadBitmapUnlocked(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, filename + ".png"));
+            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, filename + ".png"))) {
+                button.BackgroundImage = LoadBitmapUnlocked(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, filename + ".png"));
                 button.BackgroundImageLayout = ImageLayout.Zoom;
             }
         }
@@ -129,10 +129,10 @@ namespace STAAC {
 
         // This function saves all changes to file:
         void SaveSettings() {
-            if (!Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate))) {
-                Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate));
+            if (!Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate))) {
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate));
             }
-            File.WriteAllText(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName), 
+            File.WriteAllText(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, MenuForm.SETTINGS_FILE_NAME), 
                 "Author=" + bm.GetAuthor() + Environment.NewLine +
                 "Category=" + bm.GetCategory() + Environment.NewLine +
                 "Last Accessed=" + DateTime.Now + Environment.NewLine +
@@ -146,16 +146,16 @@ namespace STAAC {
             Text = "STAAC - " + MenuForm.selectedTemplate;
 
             // Create wordlists folder if it doesn't exist:
-            if (!Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName))) {
-                Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName));
+            if (!Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME))) {
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME));
             }
 
 
             // Try to load appropriate template:
-            if (Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate))) {
-                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
+            if (Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate))) {
+                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, MenuForm.SETTINGS_FILE_NAME))) {
 
-                    foreach (string line in File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
+                    foreach (string line in File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, MenuForm.SETTINGS_FILE_NAME))) {
                         if (line.ToLower().Contains("author")) {
                             bm.SetAuthor(line.Split('=')[1]);
                         } else if (line.ToLower().Contains("category")) {
@@ -176,7 +176,7 @@ namespace STAAC {
                     }
                 } else {
                     // Settings file wasn't found. Abort:
-                    MessageBox.Show("Couldn't find " + MenuForm.settingsFileName + " inside of " + Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate) + "!",
+                    MessageBox.Show("Couldn't find " + MenuForm.SETTINGS_FILE_NAME + " inside of " + Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate) + "!",
                         "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     Close();
@@ -216,7 +216,7 @@ namespace STAAC {
                 }
             } else {
                 // Process any special words that have dictionaries associated with them:
-                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, buttonPressed.Text + ".txt"))) {
+                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, buttonPressed.Text + ".txt"))) {
                     var wordForm = new PhraseBuildingForm(buttonPressed.Text);
                     wordForm.ShowDialog();
                     string fullPhrase = wordForm.ProcessPhrase();
@@ -299,7 +299,7 @@ namespace STAAC {
         }
 
         private void PnlButtons_Resize(object sender, EventArgs e) {
-            foreach (string line in File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, MenuForm.settingsFileName))) {
+            foreach (string line in File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, MenuForm.SETTINGS_FILE_NAME))) {
                 if (line.ToLower().Contains("matrix data")) {
                     ReloadButtons(bm.GetMatrixData());
                 }

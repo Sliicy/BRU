@@ -11,17 +11,24 @@ using System.Windows.Forms;
 using System.IO.Compression;
 using STAAC.Models;
 
+/**
+ * Class responsible for presenting the main form to choose actions to perform to Templates.
+ */
 namespace STAAC {
     public partial class MenuForm : Form {
         public MenuForm() {
             InitializeComponent();
         }
 
-        public static string selectedTemplate = ""; // Contains the name of the active template being used.
-        public readonly static string templateFolderName = "Templates";
-        public readonly static string wordlistsFolderName = "Wordlists";
-        public readonly static string settingsFileName = "info.txt";
+        // Contains the name of the active template being used:
+        public static string selectedTemplate = "";
 
+        // Constants used throughout the program:
+        public const string TEMPLATE_FOLDER_NAME = "Templates";
+        public const string WORDLISTS_FOLDER_NAME = "Wordlists";
+        public const string SETTINGS_FILE_NAME = "info.txt";
+
+        // Contains a list of last modified dates of Templates:
         List<FolderDates> folderTimes = new List<FolderDates>();
 
         // Method used throughout program to control flow of help dialogues:
@@ -29,6 +36,7 @@ namespace STAAC {
             MessageBox.Show(message, "Help", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
+        // Function used to refresh the list of folders in the Templates folder:
         void RefreshTemplateList() {
             /*
              Refreshes the list of templates.
@@ -40,7 +48,7 @@ namespace STAAC {
             }
 
             // Check if any template folders exist:
-            string templatePath = Path.Combine(Application.StartupPath, templateFolderName);
+            string templatePath = Path.Combine(Application.StartupPath, TEMPLATE_FOLDER_NAME);
             if (Directory.Exists(templatePath)) {
                 int buttonCount = 0;
 
@@ -51,7 +59,7 @@ namespace STAAC {
                 DirectoryInfo di = new DirectoryInfo(templatePath);
                 DirectoryInfo[] folders = di.GetDirectories();
                 foreach (var folder in folders) {
-                    var f = File.ReadAllLines(Path.Combine(folder.FullName, settingsFileName));
+                    var f = File.ReadAllLines(Path.Combine(folder.FullName, SETTINGS_FILE_NAME));
                     foreach (string line in f) {
                         if (line.ToLower().Contains("last accessed")) {
 
@@ -72,6 +80,7 @@ namespace STAAC {
                 folderTimes.Sort((x, y) => DateTime.Compare(y.Modified, x.Modified));
                 
                 foreach (var folderItem in folderTimes) {
+
                     // Create a button for each folder:
                     Button template = new Button {
                         Text = Path.GetFileName(folderItem.Name),
@@ -111,12 +120,16 @@ namespace STAAC {
         }
 
         private void BtnNew_Click(object sender, EventArgs e) {
+
+            // Display the new Template form:
             var newTemplate = new NewTemplateForm();
             newTemplate.ShowDialog();
             Application.Restart();
         }
 
         private void BtnImport_Click(object sender, EventArgs e) {
+
+            // Ask where to import the .zip file from:
             var zipSelect = new OpenFileDialog() { 
             InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
             Filter = "Compressed Zip Folder (*.zip) | *.zip",
@@ -124,10 +137,10 @@ namespace STAAC {
             Title = "Please choose a zip file template to import."};
             var selection = zipSelect.ShowDialog();
             if (selection == DialogResult.OK) {
-                if (Directory.Exists(Path.Combine(Application.StartupPath, templateFolderName, Path.GetFileNameWithoutExtension(zipSelect.FileName)))) {
+                if (Directory.Exists(Path.Combine(Application.StartupPath, TEMPLATE_FOLDER_NAME, Path.GetFileNameWithoutExtension(zipSelect.FileName)))) {
                     MessageBox.Show("A template with the name \"" + Path.GetFileNameWithoutExtension(zipSelect.FileName) + "\" already exists! Please choose a different name.", "Template Name Conflict", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } else {
-                    ZipFile.ExtractToDirectory(zipSelect.FileName, Path.Combine(Application.StartupPath, templateFolderName, Path.GetFileNameWithoutExtension(zipSelect.FileName)));
+                    ZipFile.ExtractToDirectory(zipSelect.FileName, Path.Combine(Application.StartupPath, TEMPLATE_FOLDER_NAME, Path.GetFileNameWithoutExtension(zipSelect.FileName)));
                     MessageBox.Show("Imported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshTemplateList();
                 }
@@ -135,11 +148,15 @@ namespace STAAC {
         }
 
         private void BtnExport_Click(object sender, EventArgs e) {
+
+            // Display the export Template form:
             var export = new ExportTemplateForm();
             export.ShowDialog();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e) {
+
+            // Display the delete Template form:
             DeleteTemplateForm d = new DeleteTemplateForm();
             d.ShowDialog();
             Application.Restart();

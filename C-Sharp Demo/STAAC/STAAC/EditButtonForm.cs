@@ -51,7 +51,7 @@ namespace STAAC {
             // Morph the Assignment Button into a Delete Button, depending on if there is a
             // wordlist with the original name or not:
             // If there is no wordlist, then this button functions to create a new wordlist.
-            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, txtName.Text + ".txt"))) {
+            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, txtName.Text + ".txt"))) {
                 btnAssignWordlist.Text = "&Delete Wordlist";
             }
         }
@@ -76,10 +76,10 @@ namespace STAAC {
                 saveChanges = true;
                 
                 // Check if there's also a picture that has the original name, that needs to change to the new name:
-                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, originalName + ".png"))) {
+                if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, originalName + ".png"))) {
                     
                     // Rename the original image to the new name along with .png appended:
-                    File.Move(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, originalName + ".png"), Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, newName + ".png"));
+                    File.Move(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, originalName + ".png"), Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, newName + ".png"));
                 }
                 Close();
             }
@@ -109,7 +109,7 @@ namespace STAAC {
                 // Set the image (copy the image, rename it, convert it to .png, and save it to the Template folder):
                 Bitmap b = (Bitmap)Image.FromFile(picSelect.FileName);
                 using (MemoryStream ms = new MemoryStream()) {
-                    b.Save(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, txtName.Text + ".png"), ImageFormat.Png);
+                    b.Save(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, txtName.Text + ".png"), ImageFormat.Png);
                 }
             }
 
@@ -118,13 +118,13 @@ namespace STAAC {
         private void BtnClearImage_Click(object sender, EventArgs e) {
 
             // Confirm to remove the image associated with that button:
-            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, originalName + ".png"))) {
-                DialogResult result = MessageBox.Show("Are you sure you want to permanently delete the picture for \"" + originalName + "\"?" + Environment.NewLine + "It is located at: " + Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, originalName + ".png"), "Confirm Deletion?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, originalName + ".png"))) {
+                DialogResult result = MessageBox.Show("Are you sure you want to permanently delete the picture for \"" + originalName + "\"?" + Environment.NewLine + "It is located at: " + Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, originalName + ".png"), "Confirm Deletion?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.Yes) {
                     try {
 
                         // Delete the image:
-                        File.Delete(Path.Combine(Application.StartupPath, MenuForm.templateFolderName, MenuForm.selectedTemplate, originalName + ".png"));
+                        File.Delete(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, MenuForm.selectedTemplate, originalName + ".png"));
                     } catch (Exception) {
                         MessageBox.Show("Couldn't delete \"" + originalName + "\"!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -135,18 +135,18 @@ namespace STAAC {
         private void BtnAssignWordlist_Click(object sender, EventArgs e) {
 
             // Create a wordlist or else remove it:
-            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, txtName.Text + ".txt"))) {
+            if (File.Exists(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, txtName.Text + ".txt"))) {
                 var response = MessageBox.Show("Are you sure you want to remove the wordlist associated with " + txtName.Text + "?", "Confirm Deletion", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (response == DialogResult.Yes) {
                     try {
-                        File.Delete(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, txtName.Text + ".txt"));
+                        File.Delete(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, txtName.Text + ".txt"));
                         btnAssignWordlist.Text = "&Add Wordlist";
                     } catch (Exception) {
                         MessageBox.Show(txtName.Text + " couldn't be deleted!", "Failed to delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             } else {
-                File.AppendAllText(Path.Combine(Application.StartupPath, MenuForm.wordlistsFolderName, txtName.Text + ".txt"), "");
+                File.AppendAllText(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, txtName.Text + ".txt"), "");
                 btnAssignWordlist.Text = "&Delete Wordlist";
             }
         }
