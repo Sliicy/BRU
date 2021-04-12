@@ -9,11 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/**
+ * Class responsible for deleting templates from the Templates folder.
+ */
 namespace STAAC {
     public partial class DeleteTemplateForm : Form {
         public DeleteTemplateForm() {
             InitializeComponent();
         }
+
+        // Function used to refresh the list of folders in the Templates folder:
         void RefreshFolderList() {
             lstTemplates.Items.Clear();
             string templatePath = Path.Combine(Application.StartupPath, MenuForm.templateFolderName);
@@ -31,6 +36,8 @@ namespace STAAC {
 
         private void BtnDelete_Click(object sender, EventArgs e) {
             if (lstTemplates.SelectedItem != null) {
+
+                // Confirm that the user wants to delete the selected folder:
                 string targetTemplate = lstTemplates.SelectedItem.ToString();
                 DialogResult d = MessageBox.Show("Are you sure you want to delete " + targetTemplate + "?", "Delete Template", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (d == DialogResult.Yes) {
@@ -49,6 +56,7 @@ namespace STAAC {
         }
 
         private void LstTemplates_SelectedIndexChanged(object sender, EventArgs e) {
+            // Enable the Delete button only if a folder is selected from the list:
             btnDelete.Enabled = lstTemplates.SelectedItem != null;
         }
 
