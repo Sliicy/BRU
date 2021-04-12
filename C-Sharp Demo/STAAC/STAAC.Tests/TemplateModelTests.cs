@@ -5,6 +5,8 @@ using STAAC.Models;
 
 namespace STAAC.Tests {
     public class TemplateModelTests {
+
+        // Test that the SetName() function is able to change the name for Templates.
         [Theory]
         [InlineData("test", "")]
         [InlineData("test", null)]
@@ -20,6 +22,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetName().Length > 0);
         }
 
+        // Test that the GetName() function is able to get the name for Templates.
         [Theory]
         [InlineData("test")]
         [InlineData("pizza")]
@@ -32,6 +35,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetName().Equals(initial));
         }
 
+        // Test that trying to create a Template with incorrect sizes will throw an error.
         [Theory]
         [InlineData(0, 0)]
         [InlineData(-1, -100)]
@@ -45,6 +49,7 @@ namespace STAAC.Tests {
             Assert.Throws<ArgumentOutOfRangeException>(() => b = new TemplateModel(initialName, incorrectWidth, incorrectHeight));
         }
 
+        // Test that the GetAuthor() function returns the author's name for the Template.
         [Theory]
         [InlineData("test")]
         [InlineData("")]
@@ -59,6 +64,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetAuthor().Equals(initialAuthor));
         }
 
+        // Test that the SetAuthor() function sets the author's name for the Template.
         [Theory]
         [InlineData("test")]
         [InlineData("")]
@@ -73,6 +79,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetAuthor().Equals(initialAuthor));
         }
 
+        // Test that the GetCategory() function gets the category name for the Template.
         [Theory]
         [InlineData("test")]
         [InlineData("")]
@@ -87,6 +94,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetCategory().Equals(initialCategory));
         }
 
+        // Test that the SetCategory() function sets the category name for the Template.
         [Theory]
         [InlineData("test")]
         [InlineData("")]
@@ -101,6 +109,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetCategory().Equals(initialCategory));
         }
 
+        // Test that the GetColorScheme() function gets the color for the Template's buttons.
         [Theory]
         [InlineData("none")]
         [InlineData("None")]
@@ -117,6 +126,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetColorScheme().Equals(initialColorScheme));
         }
 
+        // Test that the SetColorScheme() function sets the color for the Template's buttons.
         [Theory]
         [InlineData("none")]
         [InlineData("None")]
@@ -133,6 +143,7 @@ namespace STAAC.Tests {
             Assert.True(b.GetColorScheme().Equals(initialColorScheme));
         }
 
+        // Test that the GetMatrixData() function returns a matrix containing a list of buttons for the Template.
         [Theory]
         [InlineData("Matrix Data=pizza,cheese")]
         [InlineData("Matrix Data=null")]
@@ -150,6 +161,7 @@ namespace STAAC.Tests {
             Assert.Contains("=", b.GetMatrixData());
         }
 
+        // Test that the SetMatrixData() function sets a new matrix for the Template (which consists of a bunch of button names).
         [Theory]
         [InlineData("Matrix Data=pizza,cheese")]
         [InlineData("Matrix Data=null")]
@@ -166,6 +178,9 @@ namespace STAAC.Tests {
             Assert.True(b.GetMatrixData().Equals(initial));
         }
 
+        // Test that the SetMatrixData() function throws an error if the input string doesn't contain the words "Matrix Data=".
+        // 'Matrix Data=' is always prepended to be used to indicate the beginning of a matrix, so that the program knows
+        // when reading the settings file.
         [Theory]
         [InlineData("Matrix Data")]
         [InlineData("")]
