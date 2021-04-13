@@ -9,17 +9,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/**
+ * Class responsible for adding sub-category words to the word just pressed.
+ */
 namespace STAAC {
     public partial class PhraseBuildingForm : Form {
 
-        // Word being requested from other form:
+        // Word being requested from the other form:
         readonly string incomingWord = "";
 
+        // Output string which will be returned after this form closes:
         private string stringOutput = "";
         
-        // List of words from wordlist file:
+        // List of words retrieved from the wordlist file:
         private string[] words;
 
+        // Process & return the phrase to the output string:
         public string ProcessPhrase() => stringOutput;
 
         public PhraseBuildingForm() {
@@ -28,15 +33,23 @@ namespace STAAC {
 
         public PhraseBuildingForm(string initialWord) {
             InitializeComponent();
+
+            // Get the word used to trigger this whole form and use it as the original word:
             incomingWord = initialWord;
+
+            // Check if there's a wordlist that exists with that name:
             if (!File.Exists(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"))) {
-                // Short-circuit and exit if file doesn't exist:
+
+                // If there's no wordlist that exists with that name, then return the original word and close the form
+                // (essentially returns what it was given):
                 stringOutput = incomingWord;
                 Close();
             }
         }
 
         private void TxtSearch_KeyDown(object sender, KeyEventArgs e) {
+
+            // Sanitize the textbox (remove empty spaces at the ends & remove newlines):
             if (e.KeyCode == Keys.Enter) {
                 e.SuppressKeyPress = true;
                 txtSearch.Text = txtSearch.Text.Trim(' ').Replace(Environment.NewLine, "");
@@ -46,8 +59,12 @@ namespace STAAC {
         }
 
         private void TxtPhrase_KeyDown(object sender, KeyEventArgs e) {
+
+            // Prevent adding a newline to the textbox (since it's only a single line textbox):
             if (e.KeyCode == Keys.Enter) {
                 e.SuppressKeyPress = true;
+
+                // Simulate and press "Done":
                 btnDone.PerformClick();
             }
         }
@@ -76,28 +93,39 @@ namespace STAAC {
         }
 
         private void LstWords_SelectedIndexChanged(object sender, EventArgs e) {
+
+            // Add the word to the output string being created whenever the list is clicked on:
             if (lstWords.SelectedItem.ToString().Length > 0) {
                 txtPhrase.Text += " " + lstWords.SelectedItem.ToString();
             }
         }
         
         private void BtnDone_Click(object sender, EventArgs e) {
+
+            // Set the output up and return it to the previous form:
             stringOutput = txtPhrase.Text;
             Close();
         }
 
         private void PhraseBuildingForm_KeyDown(object sender, KeyEventArgs e) {
+
+            // Close the form if Ctrl + W or Escape is pressed:
             if (e.KeyCode == Keys.Escape || (ModifierKeys == Keys.Control && e.KeyCode == Keys.W)) {
                 Close();
             }
         }
 
         private void PhraseBuildingForm_Load(object sender, EventArgs e) {
+
+            // If PhraseBuildingForm(string initialWord) found an existing Wordlist file for the word, then
+            // this loads those words into memory:
             words = File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"));
             lstWords.Items.AddRange(words);
         }
 
         private void TxtSearch_TextChanged(object sender, EventArgs e) {
+
+            // Filter the list as text is entered to search for words:
             lstWords.Items.Clear();
             foreach (var word in words) {
                 if (word.Contains(txtSearch.Text.Trim(' '))) {
@@ -108,12 +136,12 @@ namespace STAAC {
 
         private void BtnAdd_Click(object sender, EventArgs e) {
             
-            // Append word to wordlist file:
+            // Add the word that wasn't found to the wordlist file (so it can be found in the future):
             var response = MessageBox.Show("Add " + txtSearch.Text + " as a subcategory of " + incomingWord + "?", "Add new word", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (response == DialogResult.Yes) {
                 File.AppendAllText(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"), Environment.NewLine + txtSearch.Text);
                 
-                // Refresh wordlist:                
+                // Refresh the wordlist:                
                 words = File.ReadAllLines(Path.Combine(Application.StartupPath, MenuForm.WORDLISTS_FOLDER_NAME, incomingWord + ".txt"));
                 TxtSearch_TextChanged(sender, e);
             }

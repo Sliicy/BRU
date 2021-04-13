@@ -10,6 +10,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/**
+ * Class responsible for creating new templates and adding them into the Templates folder.
+ */
 namespace STAAC {
     public partial class NewTemplateForm : Form {
         public NewTemplateForm() {
@@ -17,25 +20,36 @@ namespace STAAC {
         }
 
         private void BtnCreate_Click(object sender, EventArgs e) {
-            // Filter for only numbers for dimensions:
+
+            // Remove any non-digit numbers in the dimensions textboxes:
             txtWidth.Text = Regex.Replace(txtWidth.Text, "[^0-9]", "");
             txtHeight.Text = Regex.Replace(txtHeight.Text, "[^0-9]", "");
+
+            // Verify if the dimensions are greater than 0:
             if (txtWidth.Text.Trim() == "" || txtHeight.Text.Trim() == "") {
                 MessageBox.Show("Width and Height must be greater than 0.", "Size Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // Verify if another Template with the same name already exists:
             if (Directory.Exists(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, txtName.Text))) {
                 MessageBox.Show("A template with the name \"" + txtName.Text + "\" already exists! Please choose a different name.", "Template Name Conflict", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else {
+
+                // Check if the textbox has any illegal characters for naming the new Template folder:
                 if (!(txtName.Text.All(c => char.IsLetterOrDigit(c) || c == '_' || c == ' ' || c == '.' || c == '-' || c == '!'))) {
                     MessageBox.Show("Name cannot contain any special symbols.", "No Special Characters", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } else {
                     Directory.CreateDirectory(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, txtName.Text));
                     string commas = "";
+
+                    // For every row * column created from the dimensions for buttons, add a comma to the dimensions:
+                    // This basically creates an empty "container" to store the button names later.
                     for (int i = 1; i < int.Parse(txtWidth.Text) * int.Parse(txtHeight.Text); i++) {
                         commas += ",";
                     }
+
+                    // Save all the information about the Template into a settings file within the new folder created:
                     File.WriteAllText(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, txtName.Text, MenuForm.SETTINGS_FILE_NAME),
                         "Author=" + txtAuthor.Text + Environment.NewLine +
                         "Category=" + txtCategory.Text + Environment.NewLine +
@@ -53,22 +67,30 @@ namespace STAAC {
         }
 
         private void NewTemplateForm_KeyDown(object sender, KeyEventArgs e) {
+
+            // Close the form if Ctrl + W or Escape is pressed:
             if (e.KeyCode == Keys.Escape || (ModifierKeys == Keys.Control && e.KeyCode == Keys.W)) {
                 Close();
             }
         }
 
         private void NewTemplateForm_Load(object sender, EventArgs e) {
+
+            // Select the first color scheme by default:
             cbColorScheme.SelectedIndex = 0;
         }
 
         private void TxtWidth_KeyPress(object sender, KeyPressEventArgs e) {
+
+            // Block any non-digit characters from being entered:
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) {
                 e.Handled = true;
             }
         }
 
         private void TxtHeight_KeyPress(object sender, KeyPressEventArgs e) {
+
+            // Block any non-digit characters from being entered:
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) {
                 e.Handled = true;
             }
