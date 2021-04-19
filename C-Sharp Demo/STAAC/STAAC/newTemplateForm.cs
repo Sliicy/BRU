@@ -97,10 +97,12 @@ namespace STAAC {
         }
 
         private void TxtWidth_TextChanged(object sender, EventArgs e) {
+            // Prevent non-digit characters from being entered:
             txtWidth.Text = Regex.Replace(txtWidth.Text, "[^0-9]", "");
         }
 
         private void TxtHeight_TextChanged(object sender, EventArgs e) {
+            // Prevent non-digit characters from being entered:
             txtHeight.Text = Regex.Replace(txtHeight.Text, "[^0-9]", "");
         }
 

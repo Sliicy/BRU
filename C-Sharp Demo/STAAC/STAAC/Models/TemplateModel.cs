@@ -31,12 +31,6 @@ namespace STAAC.Models {
         private int matrixWidth = 1;
         private int matrixHeight = 1;
 
-        // Constructor with only a name required:
-        public TemplateModel(string name) {
-            this.name = name;
-            colorScheme = "None";
-        }
-
         // Constructor with name, and dimensions to use for the Template:
         public TemplateModel(string name, int matrixWidth, int matrixHeight) {
             this.name = name;

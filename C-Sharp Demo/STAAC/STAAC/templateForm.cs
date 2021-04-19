@@ -32,7 +32,7 @@ namespace STAAC {
         Point oldButtonLocation = new Point();
 
         // Contains a model of each template:
-        readonly TemplateModel bm = new TemplateModel(MenuForm.selectedTemplate);
+        readonly TemplateModel bm = new TemplateModel(MenuForm.selectedTemplate, 1, 1);
 
         // Holds the dimensions used to calculate the button's size for height and width:
         int buttonWidth = 0;

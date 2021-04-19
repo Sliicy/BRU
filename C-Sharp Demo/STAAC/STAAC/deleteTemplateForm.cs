@@ -42,6 +42,7 @@ namespace STAAC {
                 DialogResult d = MessageBox.Show("Are you sure you want to delete " + targetTemplate + "?", "Delete Template", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (d == DialogResult.Yes) {
                     try {
+                        // Delete entire folder and anything inside (true argument):
                         Directory.Delete(Path.Combine(Application.StartupPath, MenuForm.TEMPLATE_FOLDER_NAME, targetTemplate), true);
                     } catch (Exception) {
                         MessageBox.Show("Unable to delete " + targetTemplate + "!", "Couldn't Delete Template", MessageBoxButtons.OK, MessageBoxIcon.Error);

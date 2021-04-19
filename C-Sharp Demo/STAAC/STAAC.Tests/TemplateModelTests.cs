@@ -13,7 +13,7 @@ namespace STAAC.Tests {
         [InlineData("test", "1")]
         public void SetName_NameShouldNotBeNull(string initial, string change) {
             // Arrange:
-            TemplateModel b = new TemplateModel(initial);
+            TemplateModel b = new TemplateModel(initial, 1, 1);
 
             // Act:
             b.SetName(change);
@@ -29,7 +29,7 @@ namespace STAAC.Tests {
         [InlineData("!%(&#")]
         public void GetName_ShouldReturnName(string initial) {
             // Arrange:
-            TemplateModel b = new TemplateModel(initial);
+            TemplateModel b = new TemplateModel(initial, 1, 1);
 
             // Assert:
             Assert.True(b.GetName().Equals(initial));
@@ -55,7 +55,7 @@ namespace STAAC.Tests {
         [InlineData("")]
         public void GetAuthor_ShouldReturnAuthor(string initialAuthor) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetAuthor(initialAuthor);
@@ -70,7 +70,7 @@ namespace STAAC.Tests {
         [InlineData("")]
         public void SetAuthor_ShouldChangeAuthor(string initialAuthor) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetAuthor(initialAuthor);
@@ -85,7 +85,7 @@ namespace STAAC.Tests {
         [InlineData("")]
         public void GetCategory_ShouldReturnCategory(string initialCategory) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetCategory(initialCategory);
@@ -100,7 +100,7 @@ namespace STAAC.Tests {
         [InlineData("")]
         public void SetCategory_ShouldChangeCategory(string initialCategory) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetCategory(initialCategory);
@@ -117,7 +117,7 @@ namespace STAAC.Tests {
         [InlineData("Red")]
         public void GetColorScheme_ShouldReturnColorScheme(string initialColorScheme) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetColorScheme(initialColorScheme);
@@ -134,7 +134,7 @@ namespace STAAC.Tests {
         [InlineData("Red")]
         public void SetColorScheme_ShouldChangeColorScheme(string initialColorScheme) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetColorScheme(initialColorScheme);
@@ -151,7 +151,7 @@ namespace STAAC.Tests {
         [InlineData("Matrix Data=")]
         public void GetMatrixData_ShouldReturnMatrixDataWithEqualSymbol(string initial) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetMatrixData(initial);
@@ -169,7 +169,7 @@ namespace STAAC.Tests {
         [InlineData("Matrix Data=")]
         public void SetMatrixData_ShouldChangeMatrixData(string initial) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             b.SetMatrixData(initial);
@@ -187,7 +187,7 @@ namespace STAAC.Tests {
         [InlineData("=")]
         public void SetMatrixData_ShouldFailIfNoEqualSymbolContained(string initial) {
             // Arrange:
-            TemplateModel b = new TemplateModel("test");
+            TemplateModel b = new TemplateModel("test", 1, 1);
 
             // Act:
             Assert.Throws<ArgumentException>(() => b.SetMatrixData(initial));
